@@ -1,0 +1,510 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notre Process | ProfitizeAgency</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .proc-hero {
+      padding: 10rem 0 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .proc-hero h1 { margin-bottom: 1.2rem; }
+    .proc-hero p  { color:var(--gray-m);font-size:1.1rem;max-width:560px;margin:0 auto 2.5rem; }
+
+    /* STEPS */
+    .steps-section { padding: 5rem 0 7rem; }
+
+    .steps-container { max-width: 900px; margin: 0 auto; }
+
+    .step-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2.5rem;
+      align-items: flex-start;
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    .step-item::after {
+      content: '';
+      position: absolute;
+      left: 39px;
+      top: 80px;
+      width: 2px;
+      height: calc(100% + 2rem);
+      background: linear-gradient(to bottom, var(--blue), rgba(0,191,255,.2));
+    }
+
+    .step-item:last-child::after { display: none; }
+
+    .step-left { display: flex; flex-direction: column; align-items: center; }
+
+    .step-circle {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: var(--grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-h);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 8px 28px rgba(37,99,235,.4);
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-circle::before {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,191,255,.25);
+    }
+
+    .step-right {
+      padding-bottom: 4rem;
+    }
+
+    .step-right:last-of-type { padding-bottom: 0; }
+
+    .step-phase {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      margin-bottom: 0.4rem;
+    }
+
+    .step-right h3 { font-size: 1.5rem; margin-bottom: 0.8rem; }
+    .step-right > p { color: var(--gray-m); font-size: 0.95rem; line-height: 1.82; margin-bottom: 1.4rem; }
+
+    .step-details { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.5rem; }
+
+    .step-detail {
+      background: var(--card-bg);
+      border: 1px solid var(--card-b);
+      border-radius: var(--r-l);
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .step-detail i { color: var(--cyan); font-size: 0.9rem; margin-top: 0.15rem; flex-shrink: 0; }
+    .step-detail span { font-size: 0.84rem; color: var(--gray-m); line-height: 1.65; }
+
+    .step-deliverables {
+      background: rgba(37,99,235,.06);
+      border: 1px solid rgba(37,99,235,.18);
+      border-radius: var(--r-l);
+      padding: 1.2rem 1.5rem;
+    }
+
+    .sd-title { font-size: 0.72rem; font-weight: 700; color: var(--gray-m); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.7rem; }
+    .sd-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .sd-tag {
+      font-size: 0.72rem; font-weight: 600;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(37,99,235,.12);
+      border: 1px solid rgba(37,99,235,.25);
+      color: #60A5FA;
+    }
+
+    /* TIMELINE */
+    .timeline-section { background: var(--dark-2); padding: 5rem 0; }
+    .timeline-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 3rem; }
+    .tl-item {
+      padding: 2rem 1.5rem;
+      border-right: 1px solid var(--card-b);
+      position: relative;
+    }
+    .tl-item:last-child { border-right: none; }
+    .tl-week { font-size: 0.7rem; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .tl-item h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .tl-item p  { font-size: 0.84rem; color: var(--gray-m); line-height: 1.7; }
+
+    /* FAQ */
+    .faq-section { padding: 5rem 0; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 900px; margin: 0 auto; }
+
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-b);
+      border-radius: var(--r-l);
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      gap: 1rem;
+    }
+
+    .faq-q-text { font-size: 0.92rem; font-weight: 600; color: var(--white); }
+    .faq-icon { color: var(--cyan); font-size: 0.85rem; transition: var(--t); flex-shrink: 0; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-item.open .faq-a { max-height: 200px; }
+    .faq-a p { padding: 0 1.5rem 1.2rem; font-size: 0.88rem; color: var(--gray-m); line-height: 1.75; }
+
+    /* GUARANTEE */
+    .guarantee-section { background: var(--dark-2); padding: 4rem 0; }
+    .guarantee-inner {
+      background: var(--card-bg);
+      border: 1px solid var(--card-b);
+      border-radius: var(--r-xl);
+      padding: 3rem;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+    .guarantee-inner::before {
+      content: '';
+      position: absolute;
+      top: 0;left:0;right:0;height:1px;
+      background: var(--grad);
+    }
+    .guarantee-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .guarantee-inner h3 { font-size: 1.5rem; margin-bottom: 0.8rem; }
+    .guarantee-inner p { color: var(--gray-m); max-width: 500px; margin: 0 auto; font-size: 0.95rem; line-height: 1.8; }
+
+    @media(max-width:1024px){
+      .step-details { grid-template-columns: 1fr; }
+      .timeline-grid { grid-template-columns: repeat(2,1fr); }
+      .tl-item:nth-child(2) { border-right: none; }
+      .faq-grid { grid-template-columns: 1fr; }
+    }
+    @media(max-width:640px){
+      .step-item { grid-template-columns: 60px 1fr; gap: 1.5rem; }
+      .step-circle { width: 60px; height: 60px; font-size: 1.2rem; }
+      .step-item::after { left: 29px; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .tl-item { border-right: none; border-bottom: 1px solid var(--card-b); }
+      .tl-item:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+<!-- NAV -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo-img"><img src="logo.svg" alt="ProfitizeAgency"></a>
+    <ul class="n-menu" id="nm">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="process.html" class="active">Process</a></li>
+      <li><a href="testimonials.html">Avis</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="n-cta"><i class="fas fa-calendar-check"></i> Free Call</a>
+    <button class="n-ham" id="nh" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="proc-hero grid-bg">
+  <div class="orb orb-blue" style="width:500px;height:500px;top:-150px;left:-100px;"></div>
+  <div class="orb orb-cyan" style="width:380px;height:380px;bottom:-80px;right:-60px;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="chip reveal" style="margin:0 auto 1rem;">Notre Processus</div>
+    <h1 class="reveal d1">The <span class="g-text">4-step system</span><br>that drives growth</h1>
+    <p class="reveal d2">Un processus structuré et éprouvé qui transforme votre vision en résultats digitaux mesurables et durables.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="reveal d3">
+      <a href="contact.html" class="btn btn-p btn-lg"><i class="fas fa-calendar-alt"></i> Démarrer maintenant</a>
+      <a href="portfolio.html" class="btn btn-o btn-lg">Voir les résultats</a>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="steps-section">
+  <div class="container">
+    <div class="s-hd c reveal" style="margin-bottom:4rem;">
+      <div class="chip">Step by step</div>
+      <h2 class="s-title">How we work, <span class="g-text">in detail</span></h2>
+      <p class="s-desc">De la première consultation au scaling — voici exactement ce qui se passe quand vous travaillez avec nous.</p>
+    </div>
+    <div class="steps-container">
+
+      <!-- STEP 1 -->
+      <div class="step-item">
+        <div class="step-left">
+          <div class="step-circle reveal">01</div>
+        </div>
+        <div class="step-right reveal d1">
+          <div class="step-phase">Phase 1 — Semaine 1</div>
+          <h3>Discovery & <span class="g-text">Strategy</span></h3>
+          <p>On commence par vous comprendre — votre business, vos clients, vos concurrents et vos objectifs. Pas de stratégie générique : on construit un plan d'action fait pour vous.</p>
+          <div class="step-details">
+            <div class="step-detail"><i class="fas fa-phone"></i><span>Call de découverte de 30 min gratuit</span></div>
+            <div class="step-detail"><i class="fas fa-magnifying-glass"></i><span>Audit complet de votre présence digitale</span></div>
+            <div class="step-detail"><i class="fas fa-chart-bar"></i><span>Analyse approfondie des concurrents</span></div>
+            <div class="step-detail"><i class="fas fa-bullseye"></i><span>Définition des KPIs et objectifs chiffrés</span></div>
+            <div class="step-detail"><i class="fas fa-users"></i><span>Définition des personas et audience cible</span></div>
+            <div class="step-detail"><i class="fas fa-map"></i><span>Roadmap digitale sur 3 mois</span></div>
+          </div>
+          <div class="step-deliverables">
+            <div class="sd-title">Ce que vous recevez</div>
+            <div class="sd-list">
+              <span class="sd-tag">Rapport d'audit</span>
+              <span class="sd-tag">Strategy document</span>
+              <span class="sd-tag">Calendrier éditorial</span>
+              <span class="sd-tag">Plan Ads</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step-item">
+        <div class="step-left">
+          <div class="step-circle reveal">02</div>
+        </div>
+        <div class="step-right reveal d1">
+          <div class="step-phase">Phase 2 — Semaine 2-3</div>
+          <h3>Content & <span class="g-text">Creative</span></h3>
+          <p>Notre équipe créative entre en action. Production de contenu premium, design des visuels, tournage vidéo et copywriting optimisé pour convertir votre audience.</p>
+          <div class="step-details">
+            <div class="step-detail"><i class="fas fa-camera"></i><span>Shooting photo et vidéo professionnel</span></div>
+            <div class="step-detail"><i class="fas fa-pen-nib"></i><span>Copywriting et textes optimisés</span></div>
+            <div class="step-detail"><i class="fas fa-palette"></i><span>Design des visuels et identité visuelle</span></div>
+            <div class="step-detail"><i class="fas fa-film"></i><span>Montage et post-production vidéo</span></div>
+            <div class="step-detail"><i class="fas fa-calendar-check"></i><span>Planification et scheduling du contenu</span></div>
+            <div class="step-detail"><i class="fas fa-rectangle-ad"></i><span>Création des créatives publicitaires</span></div>
+          </div>
+          <div class="step-deliverables">
+            <div class="sd-title">Ce que vous recevez</div>
+            <div class="sd-list">
+              <span class="sd-tag">Pack contenu mensuel</span>
+              <span class="sd-tag">Visuels & Reels</span>
+              <span class="sd-tag">Créatives Ads</span>
+              <span class="sd-tag">Copies & Captions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step-item">
+        <div class="step-left">
+          <div class="step-circle reveal">03</div>
+        </div>
+        <div class="step-right reveal d1">
+          <div class="step-phase">Phase 3 — Semaine 4</div>
+          <h3>Launch & <span class="g-text">Execute</span></h3>
+          <p>Tout est prêt — on passe à l'action. Lancement des campagnes, publication du contenu, activation des publicités et monitoring en temps réel pour les premières 48h.</p>
+          <div class="step-details">
+            <div class="step-detail"><i class="fas fa-rocket"></i><span>Lancement des campagnes publicitaires</span></div>
+            <div class="step-detail"><i class="fas fa-mobile-screen"></i><span>Publication et gestion des réseaux sociaux</span></div>
+            <div class="step-detail"><i class="fas fa-eye"></i><span>Monitoring des performances en direct</span></div>
+            <div class="step-detail"><i class="fas fa-sliders"></i><span>Ajustements rapides des premières 48h</span></div>
+            <div class="step-detail"><i class="fas fa-bell"></i><span>Engagement communauté et réponses</span></div>
+            <div class="step-detail"><i class="fas fa-chart-line"></i><span>Dashboard de suivi en temps réel</span></div>
+          </div>
+          <div class="step-deliverables">
+            <div class="sd-title">Ce que vous recevez</div>
+            <div class="sd-list">
+              <span class="sd-tag">Campagnes actives</span>
+              <span class="sd-tag">Dashboard live</span>
+              <span class="sd-tag">Rapport J+7</span>
+              <span class="sd-tag">Support WhatsApp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="step-item">
+        <div class="step-left">
+          <div class="step-circle reveal">04</div>
+        </div>
+        <div class="step-right reveal d1">
+          <div class="step-phase">Phase 4 — En continu</div>
+          <h3>Optimize & <span class="g-text">Scale</span></h3>
+          <p>Les vraies performances arrivent avec l'optimisation continue. On analyse, on teste, on ajuste et on scale ce qui fonctionne pour maximiser votre croissance chaque mois.</p>
+          <div class="step-details">
+            <div class="step-detail"><i class="fas fa-microscope"></i><span>Analyse mensuelle complète des KPIs</span></div>
+            <div class="step-detail"><i class="fas fa-flask"></i><span>A/B testing des créatives et audiences</span></div>
+            <div class="step-detail"><i class="fas fa-arrow-trend-up"></i><span>Scaling des campagnes performantes</span></div>
+            <div class="step-detail"><i class="fas fa-rotate"></i><span>Itération et renouvellement du contenu</span></div>
+            <div class="step-detail"><i class="fas fa-file-chart-line"></i><span>Rapport mensuel détaillé avec recommandations</span></div>
+            <div class="step-detail"><i class="fas fa-handshake"></i><span>Call mensuel de suivi et stratégie</span></div>
+          </div>
+          <div class="step-deliverables">
+            <div class="sd-title">Ce que vous recevez</div>
+            <div class="sd-list">
+              <span class="sd-tag">Rapport mensuel</span>
+              <span class="sd-tag">Plan optimisation</span>
+              <span class="sd-tag">Call stratégie</span>
+              <span class="sd-tag">Scaling Ads</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="s-hd c reveal">
+      <div class="chip">Timeline</div>
+      <h2 class="s-title">What to expect <span class="g-text">week by week</span></h2>
+    </div>
+    <div class="timeline-grid">
+      <div class="tl-item reveal">
+        <div class="tl-week">Semaine 1</div>
+        <h4>Onboarding & Audit</h4>
+        <p>Call de découverte, accès aux comptes, audit complet et livraison du plan stratégique.</p>
+      </div>
+      <div class="tl-item reveal d1">
+        <div class="tl-week">Semaine 2-3</div>
+        <h4>Production & Setup</h4>
+        <p>Shooting, création de contenu, design des Ads et configuration technique des campagnes.</p>
+      </div>
+      <div class="tl-item reveal d2">
+        <div class="tl-week">Semaine 4</div>
+        <h4>Launch</h4>
+        <p>Lancement des campagnes, publication du contenu, monitoring et ajustements rapides.</p>
+      </div>
+      <div class="tl-item reveal d3">
+        <div class="tl-week">Mois 2+</div>
+        <h4>Scale & Optimize</h4>
+        <p>Optimisation continue, scaling des performances, rapport mensuel et planning du mois suivant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="s-hd c reveal" style="margin-bottom:3rem;">
+      <div class="chip">FAQ</div>
+      <h2 class="s-title">Questions <span class="g-text">fréquentes</span></h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item reveal">
+        <div class="faq-q"><span class="faq-q-text">Combien de temps pour voir des résultats ?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-a"><p>Les premiers résultats (portée, engagement) se voient dès les 2 premières semaines. Les résultats business significatifs (leads, ventes) apparaissent généralement entre le 30ème et 60ème jour.</p></div>
+      </div>
+      <div class="faq-item reveal d1">
+        <div class="faq-q"><span class="faq-q-text">Est-ce que vous travaillez avec un budget fixe ?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-a"><p>Nous nous adaptons à votre budget. Nos services sont tarifés selon le scope de travail. Le budget publicitaire Ads est séparé de nos honoraires — nous vous conseillons sur le montant optimal.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><span class="faq-q-text">Vous travaillez en dehors de Laayoune ?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-a"><p>Oui, nous travaillons avec des clients dans tout le Maroc et à l'international. La distance n'est pas un obstacle — on gère tout à distance efficacement via WhatsApp et Zoom.</p></div>
+      </div>
+      <div class="faq-item reveal d1">
+        <div class="faq-q"><span class="faq-q-text">Comment se déroule la facturation ?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-a"><p>Nous travaillons avec des contrats mensuels. Un acompte de 50% au démarrage et le solde à la livraison. Pour les contrats long terme, des arrangements flexibles sont possibles.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><span class="faq-q-text">Quelles plateformes gérez-vous ?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-a"><p>Instagram, Facebook, TikTok, YouTube, Google (Ads + SEO), WhatsApp Business et LinkedIn selon votre secteur. On vous recommande les plateformes les plus pertinentes pour votre business.</p></div>
+      </div>
+      <div class="faq-item reveal d1">
+        <div class="faq-q"><span class="faq-q-text">Avez-vous des engagements de résultats ?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-a"><p>On s'engage sur des métriques claires définies ensemble. Si les objectifs ne sont pas atteints après 90 jours, on continue à travailler gratuitement jusqu'à les atteindre.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee-section">
+  <div class="container">
+    <div class="guarantee-inner reveal">
+      <div class="guarantee-icon">🛡️</div>
+      <h3>Notre <span class="g-text">engagement résultats</span></h3>
+      <p>Si vous ne voyez pas d'amélioration mesurable de vos métriques dans les 90 premiers jours, nous continuons à travailler gratuitement jusqu'à livrer les résultats promis. Votre succès est notre réputation.</p>
+      <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-p"><i class="fas fa-calendar-check"></i> Démarrons ensemble</a>
+        <a href="portfolio.html" class="btn btn-o">Voir nos résultats</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="index.html" class="logo-img footer-logo"><img src="logo.svg" alt="ProfitizeAgency"></a>
+        <p class="ft-brand-txt">Agence de marketing digital basée à Laayoune, Maroc.</p>
+        <div class="socials">
+          <a href="https://instagram.com/Profitizeagency" target="_blank" class="soc-btn"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/212619947483" target="_blank" class="soc-btn"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:profitizeagc@gmail.com" class="soc-btn"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="soc-btn"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="ft-col"><h5>Pages</h5><ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="ft-col"><h5>Services</h5><ul>
+        <li><a href="services.html">Marketing Digital</a></li>
+        <li><a href="services.html">Création de Contenu</a></li>
+        <li><a href="services.html">Publicité Ads</a></li>
+        <li><a href="services.html">SEO</a></li>
+      </ul></div>
+      <div class="ft-col"><h5>Contact</h5><ul>
+        <li><a href="tel:+212619947483">+212 619 947 483</a></li>
+        <li><a href="mailto:profitizeagc@gmail.com">profitizeagc@gmail.com</a></li>
+        <li><a href="#">Laayoune, Maroc</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-bot">
+      <p>&copy; 2025 <span class="cy">ProfitizeAgency</span>. Tous droits réservés.</p>
+      <p>Made with ♥ in Laayoune</p>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/212619947483" target="_blank" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40));
+  const nh = document.getElementById('nh'), nm = document.getElementById('nm');
+  nh.addEventListener('click', () => { nh.classList.toggle('open'); nm.classList.toggle('open'); });
+  nm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nh.classList.remove('open'); nm.classList.remove('open'); }));
+  const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('open')));
+</script>
+</body>
+</html>
+
+

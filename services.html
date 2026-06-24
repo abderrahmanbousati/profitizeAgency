@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Services ProfitizeAgency — Création de sites web, marketing digital, SEO, publicité en ligne, branding et production vidéo. Laayoune, Maroc.">
+  <title>Services | ProfitizeAgency</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* PAGE HERO */
+    .srv-hero {
+      padding: 10rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .srv-hero .orb1 { width:500px;height:500px;top:-150px;left:-100px; }
+    .srv-hero .orb2 { width:400px;height:400px;bottom:-80px;right:-80px; }
+    .srv-hero h1 { margin-bottom: 1.2rem; }
+    .srv-hero p  { color:var(--gray-m); font-size:1.1rem; max-width:580px; margin:0 auto 2.5rem; }
+
+    /* ALL SERVICES GRID */
+    .all-srv { padding: 5rem 0 7rem; }
+    .all-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.4rem; }
+
+    .srv-big-card { display: flex; gap: 1.8rem; align-items: flex-start; }
+    .srv-big-card .ib { width:60px;height:60px;font-size:1.5rem;flex-shrink:0; }
+    .srv-big-card .srv-info h3 { font-size:1.2rem; margin-bottom:0.5rem; }
+    .srv-big-card .srv-info p  { font-size:0.9rem; color:var(--gray-m); line-height:1.78; margin-bottom:0.8rem; }
+    .srv-tags { display:flex; gap:0.4rem; flex-wrap:wrap; }
+    .srv-tag {
+      font-size:0.68rem;
+      font-weight:600;
+      padding:0.2rem 0.6rem;
+      border-radius:999px;
+      background:rgba(37,99,235,.1);
+      border:1px solid rgba(37,99,235,.2);
+      color:#60A5FA;
+    }
+
+    /* WHY SECTION */
+    .why-section { background:var(--dark-2); padding:6rem 0; }
+    .why-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .why-list { display:flex; flex-direction:column; gap:1.5rem; margin-top:2rem; }
+    .why-item { display:flex; gap:1rem; align-items:flex-start; }
+    .why-item .wi-icon {
+      width:44px;height:44px;min-width:44px;
+      border-radius:12px;
+      background:rgba(0,191,255,.08);
+      border:1px solid rgba(0,191,255,.16);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.1rem;color:var(--cyan);
+    }
+    .why-item h4 { margin-bottom:0.25rem; font-size:1rem; }
+    .why-item p  { font-size:0.88rem; color:var(--gray-m); line-height:1.72; }
+
+    .why-visual {
+      background:var(--card-bg);
+      border:1px solid var(--card-b);
+      border-radius:24px;
+      padding:2.5rem;
+      backdrop-filter:blur(12px);
+    }
+    .wv-title { font-size:1.1rem; font-weight:700; margin-bottom:1.5rem; color:var(--white); }
+    .wv-row {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0.9rem 0;
+      border-bottom:1px solid var(--card-b);
+    }
+    .wv-row:last-child { border-bottom:none; }
+    .wv-label { display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:var(--gray-m); }
+    .wv-label i { color:var(--cyan);font-size:0.9rem; }
+    .wv-val { font-family:var(--font-h);font-weight:800;font-size:1rem;color:var(--white); }
+
+    /* PRICING CTA */
+    .price-cta { padding:5rem 0; text-align:center; }
+    .price-cta h2 { margin-bottom:1rem; }
+    .price-cta p  { color:var(--gray-m);max-width:500px;margin:0 auto 2.5rem; }
+    .price-btns { display:flex;gap:1rem;justify-content:center;flex-wrap:wrap; }
+
+    /* RESPONSIVE */
+    @media(max-width:1024px){
+      .all-grid { grid-template-columns:1fr; }
+      .why-grid { grid-template-columns:1fr; }
+    }
+    @media(max-width:640px){
+      .srv-big-card { flex-direction:column; gap:1rem; }
+      .srv-big-card .ib { width:48px;height:48px; }
+    }
+  </style>
+</head>
+<body>
+<!-- NAV -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo-img"><img src="logo.svg" alt="ProfitizeAgency"></a>
+    <ul class="n-menu" id="nm">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="testimonials.html">Avis</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="n-cta"><i class="fas fa-calendar-check"></i> Free Call</a>
+    <button class="n-ham" id="nh" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="srv-hero grid-bg">
+  <div class="orb orb-blue orb1"></div>
+  <div class="orb orb-cyan orb2"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="chip reveal" style="margin:0 auto 1rem;">Nos Services</div>
+    <h1 class="reveal d1">Premium Digital Services<br><span class="g-text">built to scale your business</span></h1>
+    <p class="reveal d2">10 services experts, une seule mission : faire exploser votre croissance digitale et transformer vos prospects en clients fidèles.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="reveal d3">
+      <a href="contact.html" class="btn btn-p btn-lg"><i class="fas fa-calendar-alt"></i> Consultation Gratuite</a>
+      <a href="portfolio.html" class="btn btn-o btn-lg">Voir nos résultats</a>
+    </div>
+  </div>
+</section>
+
+<!-- ALL SERVICES -->
+<section class="all-srv">
+  <div class="container">
+    <div class="s-hd reveal">
+      <div class="chip">10 services experts</div>
+      <h2 class="s-title">Tout ce dont vous avez besoin,<br><span class="g-text">sous un même toit</span></h2>
+    </div>
+    <div class="all-grid">
+
+      <div class="card srv-big-card reveal">
+        <div class="ib"><i class="fas fa-globe"></i></div>
+        <div class="srv-info">
+          <h3>Création de Sites Web</h3>
+          <p>Des sites vitrine, e-commerce et landing pages conçus pour convertir. Design moderne, optimisé mobile, chargement rapide et intégré avec votre stratégie SEO.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">WordPress</span>
+            <span class="srv-tag">E-commerce</span>
+            <span class="srv-tag">Landing Page</span>
+            <span class="srv-tag">Responsive</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card srv-big-card reveal d1">
+        <div class="ib"><i class="fas fa-chart-mixed"></i></div>
+        <div class="srv-info">
+          <h3>Marketing Digital</h3>
+          <p>Stratégies de croissance complètes et personnalisées selon votre secteur. Analyse de marché, positionnement, acquisition et fidélisation client.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Stratégie</span>
+            <span class="srv-tag">Acquisition</span>
+            <span class="srv-tag">Funnel</span>
+            <span class="srv-tag">Analytics</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card srv-big-card reveal">
+        <div class="ib"><i class="fas fa-mobile-screen-button"></i></div>
+        <div class="srv-info">
+          <h3>Gestion des Réseaux Sociaux</h3>
+          <p>Gestion complète de vos comptes Instagram, Facebook et TikTok. Calendrier éditorial, publication régulière, engagement communauté et reporting mensuel.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Instagram</span>
+            <span class="srv-tag">Facebook</span>
+            <span class="srv-tag">TikTok</span>
+            <span class="srv-tag">Community</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card srv-big-card reveal d1">
+        <div class="ib"><i class="fas fa-clapperboard"></i></div>
+        <div class="srv-info">
+          <h3>Création de Contenu</h3>
+          <p>Photos produits, Reels viraux, vidéos marketing et visuels graphiques qui captent l'attention et poussent à l'action. Contenu qui se démarque dans le feed.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Reels</span>
+            <span class="srv-tag">Photo</span>
+            <span class="srv-tag">Copywriting</span>
+            <span class="srv-tag">Motion</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card srv-big-card reveal">
+        <div class="ib"><i class="fas fa-rectangle-ad"></i></div>
+        <div class="srv-info">
+          <h3>Publicité en Ligne (Ads)</h3>
+          <p>Campagnes Meta Ads et Google Ads créées, gérées et optimisées pour maximiser votre ROI. Ciblage précis, creative testing et scaling progressif.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Meta Ads</span>
+            <span class="srv-tag">Google Ads</span>
+            <span class="srv-tag">Retargeting</span>
+            <span class="srv-tag">ROI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card srv-big-card reveal d1">
+        <div class="ib"><i class="fas fa-palette"></i></div>
+        <div class="srv-info">
+          <h3>Branding & Identité Visuelle</h3>
+          <p>Logo professionnel, charte graphique complète et identité de marque cohérente sur tous vos canaux. Un branding qui inspire confiance et se démarque.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Logo</span>
+            <span class="srv-tag">Charte graphique</span>
+            <span class="srv-tag">Brand guide</span>
+            <span class="srv-tag">Identité</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card srv-big-card reveal">
+        <div class="ib"><i class="fas fa-robot"></i></div>
+        <div class="srv-info">
+          <h3>Automatisation & IA</h3>
+          <p>Chatbots intelligents, automatisation des workflows marketing, intégration IA et systèmes de nurturing automatisés pour scaler sans multiplier les ressources.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">ChatBot</span>
+            <span class="srv-tag">Automation</span>
+            <span class="srv-tag">CRM</span>
+            <span class="srv-tag">IA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card srv-big-card reveal d1">
+        <div class="ib"><i class="fas fa-magnifying-glass-chart"></i></div>
+        <div class="srv-info">
+          <h3>SEO & Référencement</h3>
+          <p>Audit technique, optimisation on-page, création de contenu SEO et link building pour ranker sur Google et générer du trafic organique qualifié durablement.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Google</span>
+            <span class="srv-tag">SEO Local</span>
+            <span class="srv-tag">Mots-clés</span>
+            <span class="srv-tag">Backlinks</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card srv-big-card reveal">
+        <div class="ib"><i class="fas fa-film"></i></div>
+        <div class="srv-info">
+          <h3>Production Visuelle</h3>
+          <p>Shooting photo professionnel, tournage vidéo, montage créatif et post-production. Du contenu visuel premium qui valorise vos produits et services.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Shooting</span>
+            <span class="srv-tag">Vidéo</span>
+            <span class="srv-tag">Montage</span>
+            <span class="srv-tag">Drone</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card srv-big-card reveal d1">
+        <div class="ib"><i class="fas fa-clipboard-list"></i></div>
+        <div class="srv-info">
+          <h3>Audit & Conseil</h3>
+          <p>Analyse complète de votre présence digitale, audit de vos campagnes existantes et recommandations stratégiques concrètes avec un plan d'action prioritisé.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Audit</span>
+            <span class="srv-tag">Stratégie</span>
+            <span class="srv-tag">Consulting</span>
+            <span class="srv-tag">Plan d'action</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <div class="chip reveal">Pourquoi choisir</div>
+        <h2 class="s-title reveal d1">Why <span class="g-text">ProfitizeAgency</span><br>outperforms the rest</h2>
+        <div class="why-list">
+          <div class="why-item reveal">
+            <div class="wi-icon"><i class="fas fa-bolt"></i></div>
+            <div>
+              <h4>Results-first approach</h4>
+              <p>Chaque action est mesurée et optimisée. On ne livre pas juste du contenu — on livre des résultats avec des métriques claires.</p>
+            </div>
+          </div>
+          <div class="why-item reveal d1">
+            <div class="wi-icon"><i class="fas fa-users"></i></div>
+            <div>
+              <h4>Équipe créative complète</h4>
+              <p>Designers, vidéastes, copywriters, ads managers — tout sous un même toit, sans sous-traiter votre vision.</p>
+            </div>
+          </div>
+          <div class="why-item reveal d2">
+            <div class="wi-icon"><i class="fas fa-map-location-dot"></i></div>
+            <div>
+              <h4>Experts du marché marocain</h4>
+              <p>On comprend la culture locale, les habitudes des consommateurs marocains et les plateformes qui convertissent ici.</p>
+            </div>
+          </div>
+          <div class="why-item reveal d3">
+            <div class="wi-icon"><i class="fas fa-headset"></i></div>
+            <div>
+              <h4>Support & communication 7j/7</h4>
+              <p>Toujours disponibles via WhatsApp. Vous n'attendez jamais une réponse et restez informés en temps réel.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal d2">
+        <div class="why-visual">
+          <div class="wv-title">📊 Nos résultats moyens</div>
+          <div class="wv-row">
+            <div class="wv-label"><i class="fas fa-eye"></i> Croissance des vues</div>
+            <div class="wv-val g-text">+340%</div>
+          </div>
+          <div class="wv-row">
+            <div class="wv-label"><i class="fas fa-heart"></i> Taux d'engagement</div>
+            <div class="wv-val g-text">+180%</div>
+          </div>
+          <div class="wv-row">
+            <div class="wv-label"><i class="fas fa-arrow-pointer"></i> Taux de conversion</div>
+            <div class="wv-val g-text">+75%</div>
+          </div>
+          <div class="wv-row">
+            <div class="wv-label"><i class="fas fa-dollar-sign"></i> Retour sur investissement</div>
+            <div class="wv-val g-text">2.5x</div>
+          </div>
+          <div class="wv-row">
+            <div class="wv-label"><i class="fas fa-users"></i> Leads générés / mois</div>
+            <div class="wv-val g-text">+250</div>
+          </div>
+          <div class="wv-row">
+            <div class="wv-label"><i class="fas fa-star"></i> Satisfaction client</div>
+            <div class="wv-val g-text">95%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="price-cta">
+  <div class="orb orb-blue" style="width:400px;height:400px;left:50%;top:50%;transform:translate(-50%,-50%);filter:blur(120px);opacity:.08;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="chip reveal" style="margin:0 auto 1rem;">Commençons</div>
+    <h2 class="reveal d1">Choisissez votre service,<br><span class="g-text">on s'occupe du reste</span></h2>
+    <p class="reveal d2">Consultation gratuite de 30 minutes pour définir la meilleure stratégie pour votre business.</p>
+    <div class="price-btns reveal d3">
+      <a href="contact.html" class="btn btn-p btn-lg"><i class="fas fa-calendar-check"></i> Book Free Call</a>
+      <a href="https://wa.me/212619947483?text=Bonjour%20ProfitizeAgency%20!%20Je%20voudrais%20des%20infos%20sur%20vos%20services." target="_blank" class="btn btn-o btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="index.html" class="logo-img footer-logo"><img src="logo.svg" alt="ProfitizeAgency"></a>
+        <p class="ft-brand-txt">Agence de marketing digital basée à Laayoune, Maroc.</p>
+        <div class="socials">
+          <a href="https://instagram.com/Profitizeagency" target="_blank" class="soc-btn"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/212619947483" target="_blank" class="soc-btn"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:profitizeagc@gmail.com" class="soc-btn"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="soc-btn"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="ft-col"><h5>Services</h5><ul>
+        <li><a href="services.html">Création de Sites Web</a></li>
+        <li><a href="services.html">Marketing Digital</a></li>
+        <li><a href="services.html">Réseaux Sociaux</a></li>
+        <li><a href="services.html">Publicité en Ligne</a></li>
+        <li><a href="services.html">SEO</a></li>
+      </ul></div>
+      <div class="ft-col"><h5>Agence</h5><ul>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="testimonials.html">Avis</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="ft-col"><h5>Contact</h5><ul>
+        <li><a href="tel:+212619947483">+212 619 947 483</a></li>
+        <li><a href="mailto:profitizeagc@gmail.com">profitizeagc@gmail.com</a></li>
+        <li><a href="#">Laayoune, Maroc</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-bot">
+      <p>&copy; 2025 <span class="cy">ProfitizeAgency</span>. Tous droits réservés.</p>
+      <p>Made with ♥ in Laayoune</p>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/212619947483" target="_blank" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40));
+  const nh = document.getElementById('nh'), nm = document.getElementById('nm');
+  nh.addEventListener('click', () => { nh.classList.toggle('open'); nm.classList.toggle('open'); });
+  nm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nh.classList.remove('open'); nm.classList.remove('open'); }));
+  const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+</script>
+</body>
+</html>
+
+

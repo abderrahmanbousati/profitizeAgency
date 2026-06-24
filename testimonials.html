@@ -1,0 +1,466 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avis Clients | ProfitizeAgency</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .tes-hero {
+      padding: 10rem 0 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .tes-hero h1 { margin-bottom: 1.2rem; }
+    .tes-hero p  { color:var(--gray-m);font-size:1.1rem;max-width:540px;margin:0 auto; }
+
+    /* TRUST BAR */
+    .trust-bar { background:var(--dark-2);padding:3rem 0;border-top:1px solid var(--card-b);border-bottom:1px solid var(--card-b); }
+    .trust-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center; }
+    .tb-item { padding:1.5rem 1rem;position:relative; }
+    .tb-item::after { content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--card-b); }
+    .tb-item:last-child::after { display:none; }
+    .tb-num { font-family:var(--font-h);font-size:2rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1; }
+    .tb-lbl { font-size:0.78rem;color:var(--gray-m);margin-top:0.35rem; }
+
+    /* REVIEWS */
+    .reviews-section { padding:6rem 0; }
+    .reviews-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem; }
+
+    .rev-card { position:relative;overflow:hidden; }
+    .rev-top { display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem; }
+    .rev-stars { color:#F59E0B;font-size:0.85rem;letter-spacing:2px; }
+    .rev-badge { font-size:0.65rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:999px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:#4ADE80; }
+    .rev-text { font-size:0.9rem;color:var(--gray-m);font-style:italic;line-height:1.82;margin-bottom:1.4rem;position:relative; }
+    .rev-text::before { content:'\201C';color:var(--cyan);font-size:1.8rem;line-height:0;vertical-align:-0.35em;margin-right:3px; }
+    .rev-author { display:flex;align-items:center;gap:0.8rem;padding-top:1.2rem;border-top:1px solid var(--card-b); }
+    .rev-av {
+      width:44px;height:44px;border-radius:50%;
+      background:var(--grad);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;color:#fff;font-size:1rem;flex-shrink:0;
+    }
+    .rev-name { font-size:0.92rem;font-weight:700;color:var(--white);margin-bottom:0.1rem; }
+    .rev-role { font-size:0.73rem;color:var(--gray-m); }
+    .rev-quote { position:absolute;bottom:4rem;right:1.5rem;font-size:4rem;color:var(--blue);opacity:.07;font-family:serif;line-height:1;pointer-events:none; }
+
+    /* FEATURED REVIEW */
+    .feat-rev {
+      background:linear-gradient(135deg,rgba(37,99,235,.1),rgba(0,191,255,.05));
+      border:1px solid rgba(37,99,235,.25);
+      border-radius:24px;
+      padding:3rem;
+      margin-bottom:2rem;
+      position:relative;
+      overflow:hidden;
+      grid-column:1/-1;
+    }
+    .feat-rev::before { content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--grad); }
+    .feat-rev .rev-text { font-size:1.1rem;line-height:1.85; }
+    .feat-rev .rev-av { width:56px;height:56px;font-size:1.3rem; }
+    .feat-rev .rev-name { font-size:1.05rem; }
+
+    /* OVERALL RATING */
+    .rating-section { background:var(--dark-2);padding:5rem 0; }
+    .rating-inner { display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:center;max-width:800px;margin:0 auto; }
+    .rating-score { text-align:center; }
+    .big-score { font-family:var(--font-h);font-size:5rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1; }
+    .score-stars { color:#F59E0B;font-size:1.5rem;letter-spacing:3px;margin:0.5rem 0; }
+    .score-base { font-size:0.82rem;color:var(--gray-m); }
+    .rating-bars { display:flex;flex-direction:column;gap:0.8rem; }
+    .rb-row { display:flex;align-items:center;gap:1rem; }
+    .rb-label { font-size:0.8rem;color:var(--gray-m);width:60px;flex-shrink:0; }
+    .rb-bar-track { flex:1;height:8px;background:rgba(255,255,255,.07);border-radius:999px;overflow:hidden; }
+    .rb-bar-fill { height:100%;border-radius:999px;background:var(--grad); }
+    .rb-pct { font-size:0.78rem;font-weight:600;color:var(--gray-m);width:30px;text-align:right; }
+
+    /* VIDEO PLACEHOLDERS */
+    .vid-section { padding:5rem 0; }
+    .vid-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem; }
+    .vid-card {
+      background:var(--card-bg);
+      border:1px solid var(--card-b);
+      border-radius:var(--r-xl);
+      overflow:hidden;
+      transition:var(--t);
+      cursor:pointer;
+    }
+    .vid-card:hover { border-color:var(--card-bh);transform:translateY(-6px); }
+    .vid-thumb {
+      height:160px;
+      background:linear-gradient(135deg,rgba(37,99,235,.2),rgba(0,191,255,.12));
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
+      font-size:0.9rem;
+      color:var(--gray-m);
+    }
+    .vid-play {
+      width:54px;height:54px;border-radius:50%;
+      background:rgba(255,255,255,.12);
+      border:2px solid rgba(255,255,255,.25);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.3rem;color:var(--white);
+      backdrop-filter:blur(8px);
+      transition:var(--t);
+    }
+    .vid-card:hover .vid-play { background:var(--grad);border-color:transparent;box-shadow:0 8px 24px rgba(37,99,235,.5); }
+    .vid-info { padding:1.2rem; }
+    .vid-client { font-size:0.9rem;font-weight:700;color:var(--white);margin-bottom:0.2rem; }
+    .vid-role { font-size:0.75rem;color:var(--gray-m); }
+
+    /* CTA */
+    .tes-cta { padding:5rem 0;text-align:center; }
+    .tes-cta h2 { margin-bottom:1rem; }
+    .tes-cta p  { color:var(--gray-m);max-width:500px;margin:0 auto 2.5rem; }
+
+    @media(max-width:1024px){
+      .reviews-grid { grid-template-columns:1fr 1fr; }
+      .trust-grid { grid-template-columns:repeat(2,1fr); }
+      .tb-item:nth-child(2)::after { display:none; }
+      .rating-inner { grid-template-columns:1fr;gap:2.5rem; }
+      .vid-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:640px){
+      .reviews-grid { grid-template-columns:1fr; }
+      .feat-rev { padding:2rem; }
+      .vid-grid { grid-template-columns:1fr; }
+      .trust-grid { grid-template-columns:1fr 1fr; }
+      .tb-item:nth-child(2)::after { display:none; }
+    }
+  </style>
+</head>
+<body>
+<!-- NAV -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo-img"><img src="logo.svg" alt="ProfitizeAgency"></a>
+    <ul class="n-menu" id="nm">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="testimonials.html" class="active">Avis</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="n-cta"><i class="fas fa-calendar-check"></i> Free Call</a>
+    <button class="n-ham" id="nh" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="tes-hero grid-bg">
+  <div class="orb orb-blue" style="width:500px;height:500px;top:-150px;left:-100px;"></div>
+  <div class="orb orb-cyan" style="width:380px;height:380px;bottom:-80px;right:-60px;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="chip reveal" style="margin:0 auto 1rem;">Témoignages</div>
+    <h1 class="reveal d1">Real clients,<br><span class="g-text">real results</span></h1>
+    <p class="reveal d2">Pas de témoignages inventés. Ce sont les vrais retours de nos clients après avoir travaillé avec ProfitizeAgency.</p>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="tb-item reveal"><div class="tb-num">50+</div><div class="tb-lbl">Clients Satisfaits</div></div>
+      <div class="tb-item reveal d1"><div class="tb-num">4.9/5</div><div class="tb-lbl">Note Moyenne</div></div>
+      <div class="tb-item reveal d2"><div class="tb-num">95%</div><div class="tb-lbl">Taux de Satisfaction</div></div>
+      <div class="tb-item reveal d3"><div class="tb-num">3ans</div><div class="tb-lbl">D'expérience</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div class="container">
+    <div class="s-hd c reveal">
+      <div class="chip">Avis vérifiés</div>
+      <h2 class="s-title">What our clients <span class="g-text">say about us</span></h2>
+    </div>
+    <div class="reviews-grid">
+
+      <!-- FEATURED -->
+      <div class="card feat-rev reveal">
+        <div class="rev-top">
+          <div class="rev-stars">★★★★★</div>
+          <span class="rev-badge">Client vedette</span>
+        </div>
+        <p class="rev-text">ProfitizeAgency n'est pas juste une agence — c'est un vrai partenaire de croissance. En 4 mois, ils ont fait passer mon Instagram de 5K à plus de 55K abonnés avec des Reels viraux qui ont généré plus de 5 millions de vues. Mon engagement a explosé, j'ai décroché 3 partenariats avec des marques et mes revenus en ligne ont doublé. Ce sont des gens sérieux qui livrent ce qu'ils promettent.</p>
+        <div class="rev-author">
+          <div class="rev-av">A</div>
+          <div>
+            <div class="rev-name">Akram Aboulaid</div>
+            <div class="rev-role">Créateur de Contenu — Influenceur</div>
+          </div>
+        </div>
+        <div class="rev-quote">"</div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="card rev-card reveal">
+        <div class="rev-top"><div class="rev-stars">★★★★★</div></div>
+        <p class="rev-text">Wallah ces gars ont complètement changé notre business. Gusto Chicken Fries était connu localement, mais maintenant on a des gens qui viennent de partout après nous avoir vus sur Instagram. Le Reel qu'ils ont créé a fait 1.2 million de vues ! Les ventes ont augmenté de 40% en 2 mois.</p>
+        <div class="rev-author">
+          <div class="rev-av">G</div>
+          <div>
+            <div class="rev-name">Gusto Chicken Fries</div>
+            <div class="rev-role">Restauration Fast Food — Laayoune</div>
+          </div>
+        </div>
+        <div class="rev-quote">"</div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="card rev-card reveal d1">
+        <div class="rev-top"><div class="rev-stars">★★★★★</div></div>
+        <p class="rev-text">Les résultats Ads qu'ils ont obtenus pour Jeldex.ma sont impressionnants. ROI de 2.5x dès le premier mois, 250 leads qualifiés par mois et +75% de taux de conversion sur le site. Ils savent exactement quoi faire pour que chaque dirham investi rapporte.</p>
+        <div class="rev-author">
+          <div class="rev-av">J</div>
+          <div>
+            <div class="rev-name">Jeldex.ma</div>
+            <div class="rev-role">E-Commerce Maroc</div>
+          </div>
+        </div>
+        <div class="rev-quote">"</div>
+      </div>
+
+      <!-- Review 4 -->
+      <div class="card rev-card reveal">
+        <div class="rev-top"><div class="rev-stars">★★★★★</div></div>
+        <p class="rev-text">Notre pâtisserie Lavernasweet n'avait aucune présence digitale avant ProfitizeAgency. Ils ont créé toute notre identité visuelle, notre contenu Instagram et nos campagnes. Maintenant on a 850K de portée et nos commandes ont triplé. On est sold-out à chaque nouveau produit.</p>
+        <div class="rev-author">
+          <div class="rev-av">L</div>
+          <div>
+            <div class="rev-name">Lavernasweet</div>
+            <div class="rev-role">Pâtisserie & Desserts — Laayoune</div>
+          </div>
+        </div>
+        <div class="rev-quote">"</div>
+      </div>
+
+      <!-- Review 5 -->
+      <div class="card rev-card reveal d1">
+        <div class="rev-top"><div class="rev-stars">★★★★★</div></div>
+        <p class="rev-text">Le professionnalisme de ProfitizeAgency est top. Pour RH Friterie, ils ont géré nos publicités Facebook et augmenté nos commandes de livraison de 120% en 3 mois. Toujours disponibles sur WhatsApp, toujours réactifs et ils savent ce qu'ils font.</p>
+        <div class="rev-author">
+          <div class="rev-av">R</div>
+          <div>
+            <div class="rev-name">RH Friterie</div>
+            <div class="rev-role">Restauration Rapide — Laayoune</div>
+          </div>
+        </div>
+        <div class="rev-quote">"</div>
+      </div>
+
+      <!-- Review 6 -->
+      <div class="card rev-card reveal d2">
+        <div class="rev-top"><div class="rev-stars">★★★★★</div></div>
+        <p class="rev-text">Pizzagon a maintenant une vraie identité de marque et une présence digitale qui fait la différence. ProfitizeAgency nous a aidés à ranker en premier sur Google pour les recherches locales et nos commandes en ligne ont augmenté significativement. Service impeccable.</p>
+        <div class="rev-author">
+          <div class="rev-av">P</div>
+          <div>
+            <div class="rev-name">Pizzagon</div>
+            <div class="rev-role">Pizzeria — Laayoune</div>
+          </div>
+        </div>
+        <div class="rev-quote">"</div>
+      </div>
+
+      <!-- Review 7 -->
+      <div class="card rev-card reveal">
+        <div class="rev-top"><div class="rev-stars">★★★★★</div></div>
+        <p class="rev-text">Coffe Nirmine avait une belle adresse mais peu de visibilité en ligne. ProfitizeAgency a créé une identité Instagram cohérente et professionnelle. Maintenant les clients viennent en disant "je vous ai vu sur Instagram". Notre CA a augmenté de 35% depuis qu'on travaille avec eux.</p>
+        <div class="rev-author">
+          <div class="rev-av">N</div>
+          <div>
+            <div class="rev-name">Coffe Nirmine</div>
+            <div class="rev-role">Café & Salon de Thé — Laayoune</div>
+          </div>
+        </div>
+        <div class="rev-quote">"</div>
+      </div>
+
+      <!-- Review 8 -->
+      <div class="card rev-card reveal d1">
+        <div class="rev-top"><div class="rev-stars">★★★★★</div></div>
+        <p class="rev-text">WaffleFactory cherchait à attirer un public jeune sur TikTok et Instagram. ProfitizeAgency a créé des contenus ultra créatifs qui sont devenus viraux. On a eu 500K de portée, nos weekends sont complets et la queue devant le shop s'étend jusqu'à la rue. Incroyable !</p>
+        <div class="rev-author">
+          <div class="rev-av">W</div>
+          <div>
+            <div class="rev-name">WaffleFactory</div>
+            <div class="rev-role">Café & Snack — Laayoune</div>
+          </div>
+        </div>
+        <div class="rev-quote">"</div>
+      </div>
+
+      <!-- Review 9 -->
+      <div class="card rev-card reveal d2">
+        <div class="rev-top"><div class="rev-stars">★★★★★</div></div>
+        <p class="rev-text">J'avais des doutes au départ — est-ce que le digital allait vraiment fonctionner pour mon secteur ? ProfitizeAgency m'a convaincu avec des résultats concrets dès le premier mois. Stratégie claire, exécution propre, communication excellente. Je les recommande sans hésitation.</p>
+        <div class="rev-author">
+          <div class="rev-av">Z</div>
+          <div>
+            <div class="rev-name">Zakaria Rhilmane</div>
+            <div class="rev-role">Entrepreneur — Laayoune</div>
+          </div>
+        </div>
+        <div class="rev-quote">"</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OVERALL RATING -->
+<section class="rating-section">
+  <div class="container">
+    <div class="s-hd c reveal">
+      <div class="chip">Note globale</div>
+      <h2 class="s-title">Our <span class="g-text">satisfaction score</span></h2>
+    </div>
+    <div class="rating-inner">
+      <div class="rating-score reveal">
+        <div class="big-score">4.9</div>
+        <div class="score-stars">★★★★★</div>
+        <div class="score-base">sur 5.0 — 50+ avis</div>
+      </div>
+      <div class="rating-bars reveal d1">
+        <div class="rb-row">
+          <span class="rb-label">5 étoiles</span>
+          <div class="rb-bar-track"><div class="rb-bar-fill" style="width:92%"></div></div>
+          <span class="rb-pct">92%</span>
+        </div>
+        <div class="rb-row">
+          <span class="rb-label">4 étoiles</span>
+          <div class="rb-bar-track"><div class="rb-bar-fill" style="width:7%"></div></div>
+          <span class="rb-pct">7%</span>
+        </div>
+        <div class="rb-row">
+          <span class="rb-label">3 étoiles</span>
+          <div class="rb-bar-track"><div class="rb-bar-fill" style="width:1%"></div></div>
+          <span class="rb-pct">1%</span>
+        </div>
+        <div class="rb-row">
+          <span class="rb-label">2 étoiles</span>
+          <div class="rb-bar-track"><div class="rb-bar-fill" style="width:0%"></div></div>
+          <span class="rb-pct">0%</span>
+        </div>
+        <div class="rb-row">
+          <span class="rb-label">1 étoile</span>
+          <div class="rb-bar-track"><div class="rb-bar-fill" style="width:0%"></div></div>
+          <span class="rb-pct">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO TESTIMONIALS (Placeholders) -->
+<section class="vid-section">
+  <div class="container">
+    <div class="s-hd c reveal">
+      <div class="chip">Témoignages vidéo</div>
+      <h2 class="s-title">Hear it from <span class="g-text">their own words</span></h2>
+    </div>
+    <div class="vid-grid">
+      <div class="vid-card reveal">
+        <div class="vid-thumb">
+          <div class="vid-play"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="vid-info">
+          <div class="vid-client">Akram Aboulaid</div>
+          <div class="vid-role">Créateur de Contenu — "Comment j'ai atteint 50K abonnés"</div>
+        </div>
+      </div>
+      <div class="vid-card reveal d1">
+        <div class="vid-thumb">
+          <div class="vid-play"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="vid-info">
+          <div class="vid-client">Gusto Chicken Fries</div>
+          <div class="vid-role">Restaurant — "De 0 à 1.2M vues en 30 jours"</div>
+        </div>
+      </div>
+      <div class="vid-card reveal d2">
+        <div class="vid-thumb">
+          <div class="vid-play"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="vid-info">
+          <div class="vid-client">Lavernasweet</div>
+          <div class="vid-role">Pâtisserie — "Commandes x3 en 3 mois"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="tes-cta" style="background:var(--dark-2);">
+  <div class="orb orb-blue" style="width:400px;height:400px;left:50%;top:50%;transform:translate(-50%,-50%);filter:blur(120px);opacity:.08;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="chip reveal" style="margin:0 auto 1rem;">Rejoignez-les</div>
+    <h2 class="reveal d1">Join 50+ businesses<br><span class="g-text">already growing with us</span></h2>
+    <p class="reveal d2">Votre business mérite les mêmes résultats. Commençons par une consultation gratuite.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="reveal d3">
+      <a href="contact.html" class="btn btn-p btn-lg"><i class="fas fa-calendar-check"></i> Book Free Call</a>
+      <a href="https://wa.me/212619947483" target="_blank" class="btn btn-o btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="index.html" class="logo-img footer-logo"><img src="logo.svg" alt="ProfitizeAgency"></a>
+        <p class="ft-brand-txt">Agence de marketing digital à Laayoune, Maroc.</p>
+        <div class="socials">
+          <a href="https://instagram.com/Profitizeagency" target="_blank" class="soc-btn"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/212619947483" target="_blank" class="soc-btn"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:profitizeagc@gmail.com" class="soc-btn"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="soc-btn"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="ft-col"><h5>Pages</h5><ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="ft-col"><h5>Services</h5><ul>
+        <li><a href="services.html">Marketing Digital</a></li>
+        <li><a href="services.html">Création de Contenu</a></li>
+        <li><a href="services.html">Publicité Ads</a></li>
+        <li><a href="services.html">SEO</a></li>
+      </ul></div>
+      <div class="ft-col"><h5>Contact</h5><ul>
+        <li><a href="tel:+212619947483">+212 619 947 483</a></li>
+        <li><a href="mailto:profitizeagc@gmail.com">profitizeagc@gmail.com</a></li>
+        <li><a href="#">Laayoune, Maroc</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-bot">
+      <p>&copy; 2025 <span class="cy">ProfitizeAgency</span>. Tous droits réservés.</p>
+      <p>Made with ♥ in Laayoune</p>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/212619947483" target="_blank" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40));
+  const nh = document.getElementById('nh'), nm = document.getElementById('nm');
+  nh.addEventListener('click', () => { nh.classList.toggle('open'); nm.classList.toggle('open'); });
+  nm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nh.classList.remove('open'); nm.classList.remove('open'); }));
+  const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+</script>
+</body>
+</html>
+
+

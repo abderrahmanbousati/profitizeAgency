@@ -1,0 +1,456 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | ProfitizeAgency</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .con-hero {
+      padding: 10rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .con-hero-grid { display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center; }
+    .con-hero h1 { margin-bottom:1.1rem; }
+    .con-hero p  { color:var(--gray-m);font-size:1.05rem;line-height:1.82;margin-bottom:2rem; }
+
+    /* Contact items */
+    .con-items { display:flex;flex-direction:column;gap:0.8rem; margin-bottom:2rem; }
+    .con-item {
+      display:flex;align-items:center;gap:1rem;
+      background:var(--card-bg);
+      border:1px solid var(--card-b);
+      border-radius:var(--r-l);
+      padding:1rem 1.2rem;
+      text-decoration:none;
+      color:var(--white);
+      transition:var(--t);
+      backdrop-filter:blur(8px);
+    }
+    .con-item:hover {
+      border-color:var(--card-bh);
+      transform:translateX(5px);
+      box-shadow:-4px 0 0 var(--cyan);
+    }
+    .ci-icon {
+      width:44px;height:44px;flex-shrink:0;
+      border-radius:var(--r-m);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.1rem;
+    }
+    .ci-wa    { background:rgba(37,211,102,.12);color:#25D366; }
+    .ci-phone { background:rgba(37,99,235,.12); color:var(--blue-l); }
+    .ci-mail  { background:rgba(245,158,11,.12);color:#F59E0B; }
+    .ci-ig    { background:rgba(236,72,153,.12); color:#EC4899; }
+    .ci-loc   { background:rgba(0,191,255,.1);   color:var(--cyan); }
+    .ci-text  span { display:block;font-size:0.68rem;color:var(--gray-m);margin-bottom:0.1rem;text-transform:uppercase;letter-spacing:0.8px;font-weight:600; }
+    .ci-text  strong { font-size:0.9rem; }
+
+    /* FORM */
+    .con-form-card {
+      background:var(--card-bg);
+      border:1px solid var(--card-b);
+      border-radius:var(--r-xl);
+      padding:2.5rem;
+      backdrop-filter:blur(16px);
+      position:relative;
+      overflow:hidden;
+    }
+    .con-form-card::before { content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--grad); }
+    .con-form-card h3 { font-size:1.25rem;margin-bottom:0.4rem; }
+    .con-form-card .form-sub { font-size:0.85rem;color:var(--gray-m);margin-bottom:1.8rem; }
+
+    .form-row { display:grid;grid-template-columns:1fr 1fr;gap:1rem; }
+    .fg { margin-bottom:1.1rem; }
+    .fg label { display:block;font-size:0.75rem;font-weight:700;color:var(--gray-m);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.8px; }
+    .fg input, .fg select, .fg textarea {
+      width:100%;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--card-b);
+      border-radius:var(--r-m);
+      padding:0.82rem 1rem;
+      color:var(--white);
+      font-family:var(--font);
+      font-size:0.9rem;
+      transition:var(--t);
+      outline:none;
+    }
+    .fg input::placeholder, .fg textarea::placeholder { color:var(--gray-m); }
+    .fg input:focus, .fg select:focus, .fg textarea:focus {
+      border-color:var(--blue);
+      box-shadow:0 0 0 3px rgba(37,99,235,.15);
+      background:rgba(37,99,235,.04);
+    }
+    .fg select option { background:var(--dark-2);color:var(--white); }
+    .fg textarea { resize:vertical;min-height:110px;line-height:1.6; }
+    .btn-submit {
+      width:100%;
+      background:var(--grad);
+      color:#fff;
+      border:none;
+      padding:1rem;
+      border-radius:var(--r-l);
+      font-size:1rem;
+      font-weight:700;
+      cursor:pointer;
+      display:flex;align-items:center;justify-content:center;gap:0.7rem;
+      box-shadow:0 6px 24px rgba(37,99,235,.4);
+      transition:var(--t);
+      font-family:var(--font);
+      margin-top:0.5rem;
+    }
+    .btn-submit:hover { transform:translateY(-3px);box-shadow:0 12px 35px rgba(0,191,255,.45); }
+    .form-note { font-size:0.75rem;color:var(--gray-m);text-align:center;margin-top:0.8rem; }
+    .form-note i { color:var(--cyan); }
+
+    /* QUICK CONTACT */
+    .quick-contact { padding:4rem 0;background:var(--dark-2); }
+    .quick-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:900px;margin:0 auto; }
+    .quick-card {
+      background:var(--card-bg);border:1px solid var(--card-b);
+      border-radius:var(--r-l);padding:2rem;text-align:center;
+      text-decoration:none;transition:var(--t);
+      backdrop-filter:blur(8px);
+      display:block;
+    }
+    .quick-card:hover { border-color:var(--card-bh);transform:translateY(-5px);box-shadow:var(--sh-md); }
+    .quick-icon { font-size:2rem;margin-bottom:1rem; }
+    .quick-title { font-size:1rem;font-weight:700;color:var(--white);margin-bottom:0.3rem; }
+    .quick-desc  { font-size:0.82rem;color:var(--gray-m); }
+    .quick-link  { font-size:0.82rem;font-weight:600;color:var(--cyan);margin-top:0.6rem; }
+
+    /* FAQ */
+    .con-faq { padding:5rem 0; }
+    .faq-grid-2 { display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:900px;margin:0 auto; }
+    .faq-item {
+      background:var(--card-bg);border:1px solid var(--card-b);
+      border-radius:var(--r-l);overflow:hidden;backdrop-filter:blur(8px);
+    }
+    .faq-q { display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.4rem;cursor:pointer;gap:1rem; }
+    .faq-q-t { font-size:0.9rem;font-weight:600;color:var(--white); }
+    .faq-ico { color:var(--cyan);font-size:0.82rem;transition:var(--t);flex-shrink:0; }
+    .faq-item.open .faq-ico { transform:rotate(45deg); }
+    .faq-a { max-height:0;overflow:hidden;transition:max-height 0.35s ease; }
+    .faq-item.open .faq-a { max-height:200px; }
+    .faq-a p { padding:0 1.4rem 1.1rem;font-size:0.86rem;color:var(--gray-m);line-height:1.75; }
+
+    /* CTA BOTTOM */
+    .final-cta { background:linear-gradient(135deg,#1a2744,#0F172A);padding:5rem 0;text-align:center;position:relative;overflow:hidden; }
+    .final-cta::before { content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,191,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,191,255,.025) 1px,transparent 1px);background-size:56px 56px; }
+    .final-cta .container { position:relative;z-index:1; }
+    .final-cta h2 { margin-bottom:1rem; }
+    .final-cta p  { color:var(--gray-m);max-width:500px;margin:0 auto 2.5rem; }
+
+    @media(max-width:1024px){
+      .con-hero-grid { grid-template-columns:1fr;gap:3rem; }
+      .quick-grid { grid-template-columns:1fr; }
+      .faq-grid-2 { grid-template-columns:1fr; }
+    }
+    @media(max-width:640px){
+      .form-row { grid-template-columns:1fr; }
+      .con-hero { padding:8rem 0 4rem; }
+      .quick-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+<!-- NAV -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo-img"><img src="logo.svg" alt="ProfitizeAgency"></a>
+    <ul class="n-menu" id="nm">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="testimonials.html">Avis</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/212619947483" target="_blank" class="n-cta"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <button class="n-ham" id="nh" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO / MAIN CONTACT -->
+<section class="con-hero grid-bg">
+  <div class="orb orb-blue" style="width:500px;height:500px;top:-150px;left:-100px;"></div>
+  <div class="orb orb-cyan" style="width:380px;height:380px;bottom:-80px;right:-60px;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="con-hero-grid">
+      <!-- LEFT: Info -->
+      <div>
+        <div class="chip reveal">Contactez-nous</div>
+        <h1 class="reveal d1">Let's build<br><span class="g-text">something great</span></h1>
+        <p class="reveal d2">Consultation gratuite de 30 min. On écoute votre projet, on analyse vos besoins et on vous propose une stratégie sur-mesure — sans engagement.</p>
+
+        <div class="con-items reveal d2">
+          <a href="https://wa.me/212619947483?text=Bonjour%20ProfitizeAgency%20!%20Je%20voudrais%20discuter%20de%20mon%20projet." target="_blank" class="con-item">
+            <div class="ci-icon ci-wa"><i class="fab fa-whatsapp"></i></div>
+            <div class="ci-text"><span>WhatsApp — Réponse rapide</span><strong>+212 619 947 483</strong></div>
+            <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--gray-m);font-size:0.8rem;"></i>
+          </a>
+          <a href="tel:+212619947483" class="con-item">
+            <div class="ci-icon ci-phone"><i class="fas fa-phone"></i></div>
+            <div class="ci-text"><span>Appel Direct</span><strong>+212 619 947 483</strong></div>
+            <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--gray-m);font-size:0.8rem;"></i>
+          </a>
+          <a href="mailto:profitizeagc@gmail.com" class="con-item">
+            <div class="ci-icon ci-mail"><i class="fas fa-envelope"></i></div>
+            <div class="ci-text"><span>Email</span><strong>profitizeagc@gmail.com</strong></div>
+            <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--gray-m);font-size:0.8rem;"></i>
+          </a>
+          <a href="https://instagram.com/Profitizeagency" target="_blank" class="con-item">
+            <div class="ci-icon ci-ig"><i class="fab fa-instagram"></i></div>
+            <div class="ci-text"><span>Instagram</span><strong>@Profitizeagency</strong></div>
+            <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--gray-m);font-size:0.8rem;"></i>
+          </a>
+          <div class="con-item" style="cursor:default;">
+            <div class="ci-icon ci-loc"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="ci-text"><span>Localisation</span><strong>Laayoune, Maroc</strong></div>
+          </div>
+        </div>
+
+        <div class="reveal d3" style="display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.18);border-radius:var(--r-l);">
+          <div style="width:8px;height:8px;background:#22C55E;border-radius:50%;flex-shrink:0;animation:blink 1.8s infinite;"></div>
+          <p style="font-size:0.84rem;color:var(--gray-m);margin:0;">Disponibles maintenant — Temps de réponse WhatsApp &lt; 1 heure</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="con-form-card reveal d2">
+        <h3>Envoyez-nous un message</h3>
+        <p class="form-sub">Remplissez le formulaire et nous vous répondons dans l'heure via WhatsApp.</p>
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="fg">
+              <label>Votre nom *</label>
+              <input type="text" placeholder="Ex: Mohammed" required id="fname">
+            </div>
+            <div class="fg">
+              <label>Téléphone *</label>
+              <input type="tel" placeholder="06 XX XX XX XX" required id="fphone">
+            </div>
+          </div>
+          <div class="fg">
+            <label>Votre business</label>
+            <input type="text" placeholder="Nom de votre entreprise" id="fbusiness">
+          </div>
+          <div class="fg">
+            <label>Service souhaité *</label>
+            <select required id="fservice">
+              <option value="" disabled selected>Choisissez un service</option>
+              <option>Création de Sites Web</option>
+              <option>Marketing Digital</option>
+              <option>Gestion des Réseaux Sociaux</option>
+              <option>Création de Contenu</option>
+              <option>Publicité en Ligne (Ads)</option>
+              <option>Branding & Identité Visuelle</option>
+              <option>Automatisation & IA</option>
+              <option>SEO & Référencement</option>
+              <option>Production Visuelle</option>
+              <option>Audit & Conseil</option>
+              <option>Je veux un devis complet</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Budget mensuel approximatif</label>
+            <select id="fbudget">
+              <option value="" disabled selected>Votre budget</option>
+              <option>Moins de 1,000 MAD</option>
+              <option>1,000 – 3,000 MAD</option>
+              <option>3,000 – 7,000 MAD</option>
+              <option>7,000 – 15,000 MAD</option>
+              <option>15,000 MAD et plus</option>
+              <option>À définir ensemble</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Décrivez votre projet</label>
+            <textarea placeholder="Parlez-nous de votre business, vos objectifs et ce que vous souhaitez accomplir..." id="fmessage"></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            <i class="fab fa-whatsapp"></i> Envoyer via WhatsApp
+          </button>
+          <p class="form-note"><i class="fas fa-lock"></i> Vos données sont privées et ne sont jamais partagées.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK CONTACT OPTIONS -->
+<section class="quick-contact">
+  <div class="container">
+    <div class="s-hd c reveal">
+      <div class="chip">Accès rapide</div>
+      <h2 class="s-title">Préférez le <span class="g-text">contact direct ?</span></h2>
+    </div>
+    <div class="quick-grid">
+      <a href="https://wa.me/212619947483?text=Bonjour%20ProfitizeAgency%20!" target="_blank" class="quick-card reveal">
+        <div class="quick-icon">💬</div>
+        <div class="quick-title">WhatsApp</div>
+        <div class="quick-desc">La façon la plus rapide de nous joindre. Réponse en moins d'une heure.</div>
+        <div class="quick-link">Écrire maintenant →</div>
+      </a>
+      <a href="tel:+212619947483" class="quick-card reveal d1">
+        <div class="quick-icon">📞</div>
+        <div class="quick-title">Appel Direct</div>
+        <div class="quick-desc">Disponibles du lundi au samedi de 9h à 21h pour répondre à vos questions.</div>
+        <div class="quick-link">+212 619 947 483</div>
+      </a>
+      <a href="https://instagram.com/Profitizeagency" target="_blank" class="quick-card reveal d2">
+        <div class="quick-icon">📸</div>
+        <div class="quick-title">Instagram</div>
+        <div class="quick-desc">Suivez notre travail et contactez-nous en DM sur Instagram.</div>
+        <div class="quick-link">@Profitizeagency →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="con-faq">
+  <div class="container">
+    <div class="s-hd c reveal" style="margin-bottom:3rem;">
+      <div class="chip">FAQ</div>
+      <h2 class="s-title">Questions <span class="g-text">fréquentes</span></h2>
+    </div>
+    <div class="faq-grid-2">
+      <div class="faq-item reveal">
+        <div class="faq-q"><span class="faq-q-t">Combien coûtent vos services ?</span><i class="fas fa-plus faq-ico"></i></div>
+        <div class="faq-a"><p>Nos tarifs dépendent du scope du projet et de la durée. Nous proposons des packages à partir de 1,500 MAD/mois et des projets one-shot pour les sites web et branding. Contactez-nous pour un devis personnalisé.</p></div>
+      </div>
+      <div class="faq-item reveal d1">
+        <div class="faq-q"><span class="faq-q-t">Est-ce que la consultation est vraiment gratuite ?</span><i class="fas fa-plus faq-ico"></i></div>
+        <div class="faq-a"><p>Oui, 100% gratuit et sans engagement. La consultation de 30 min nous permet de comprendre votre projet et de vous proposer la meilleure stratégie. Aucune obligation d'acheter quoi que ce soit.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><span class="faq-q-t">En combien de temps livrez-vous un site web ?</span><i class="fas fa-plus faq-ico"></i></div>
+        <div class="faq-a"><p>Un site vitrine est livré en 7 à 14 jours. Un e-commerce ou un site plus complexe peut prendre 3 à 6 semaines selon les fonctionnalités. On s'engage sur des délais clairs dès le début.</p></div>
+      </div>
+      <div class="faq-item reveal d1">
+        <div class="faq-q"><span class="faq-q-t">Quand puis-je voir les premières améliorations ?</span><i class="fas fa-plus faq-ico"></i></div>
+        <div class="faq-a"><p>Les premières améliorations de portée et d'engagement sont visibles dès la 2ème semaine. Les résultats business (leads, ventes) apparaissent généralement entre le 30ème et 60ème jour de collaboration.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><span class="faq-q-t">Vous travaillez à l'extérieur de Laayoune ?</span><i class="fas fa-plus faq-ico"></i></div>
+        <div class="faq-a"><p>Absolument. Nous accompagnons des clients dans tout le Maroc (Casablanca, Rabat, Marrakech, Agadir...) et même à l'international. Tout se gère efficacement à distance via WhatsApp et vidéo call.</p></div>
+      </div>
+      <div class="faq-item reveal d1">
+        <div class="faq-q"><span class="faq-q-t">Avez-vous des contrats long terme ?</span><i class="fas fa-plus faq-ico"></i></div>
+        <div class="faq-a"><p>Nous travaillons en contrats mensuels renouvelables, pas de contrat annuel forcé. Vous pouvez continuer ou arrêter chaque mois. Notre but est de vous garder parce que vous êtes satisfait, pas parce que vous êtes piégé.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><span class="faq-q-t">Qui s'occupe de mon compte ?</span><i class="fas fa-plus faq-ico"></i></div>
+        <div class="faq-a"><p>Un account manager dédié gère votre compte et est votre interlocuteur principal. Il coordonne l'équipe créative, les Ads managers et les développeurs selon vos besoins. Vous avez toujours quelqu'un de responsable.</p></div>
+      </div>
+      <div class="faq-item reveal d1">
+        <div class="faq-q"><span class="faq-q-t">Que se passe-t-il si je ne vois pas de résultats ?</span><i class="fas fa-plus faq-ico"></i></div>
+        <div class="faq-a"><p>On s'engage sur des métriques définies ensemble. Si après 90 jours les objectifs ne sont pas atteints, nous continuons à travailler gratuitement jusqu'à les livrer. Votre succès est notre priorité absolue.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="orb orb-blue" style="width:450px;height:450px;left:-80px;top:50%;transform:translateY(-50%);opacity:.12;"></div>
+  <div class="orb orb-cyan" style="width:380px;height:380px;right:-60px;top:50%;transform:translateY(-50%);opacity:.08;"></div>
+  <div class="container reveal">
+    <div class="chip" style="margin:0 auto 1rem;">Commençons</div>
+    <h2>Stop waiting,<br><span class="g-text">start growing</span></h2>
+    <p>Chaque jour sans stratégie digitale, c'est des clients que vos concurrents récupèrent. Parlons dès aujourd'hui.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/212619947483?text=Bonjour%20ProfitizeAgency%20!%20Je%20voudrais%20une%20consultation%20gratuite." target="_blank" class="btn btn-p btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp Now</a>
+      <a href="tel:+212619947483" class="btn btn-o btn-lg"><i class="fas fa-phone"></i> Appeler Maintenant</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="index.html" class="logo-img footer-logo"><img src="logo.svg" alt="ProfitizeAgency"></a>
+        <p class="ft-brand-txt">Agence de marketing digital à Laayoune, Maroc. Nous transformons votre présence en ligne en machine à clients.</p>
+        <div class="socials">
+          <a href="https://instagram.com/Profitizeagency" target="_blank" class="soc-btn"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/212619947483" target="_blank" class="soc-btn"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:profitizeagc@gmail.com" class="soc-btn"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="soc-btn"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="ft-col"><h5>Pages</h5><ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="testimonials.html">Avis</a></li>
+      </ul></div>
+      <div class="ft-col"><h5>Services</h5><ul>
+        <li><a href="services.html">Sites Web</a></li>
+        <li><a href="services.html">Marketing Digital</a></li>
+        <li><a href="services.html">Publicité Ads</a></li>
+        <li><a href="services.html">SEO</a></li>
+        <li><a href="services.html">Branding</a></li>
+      </ul></div>
+      <div class="ft-col"><h5>Contact</h5><ul>
+        <li><a href="tel:+212619947483">+212 619 947 483</a></li>
+        <li><a href="mailto:profitizeagc@gmail.com">profitizeagc@gmail.com</a></li>
+        <li><a href="https://instagram.com/Profitizeagency">@Profitizeagency</a></li>
+        <li><a href="#">Laayoune, Maroc</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-bot">
+      <p>&copy; 2025 <span class="cy">ProfitizeAgency</span>. Tous droits réservés.</p>
+      <p>Made with ♥ in Laayoune, Maroc</p>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/212619947483" target="_blank" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+  // Navbar
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40));
+
+  // Hamburger
+  const nh = document.getElementById('nh'), nm = document.getElementById('nm');
+  nh.addEventListener('click', () => { nh.classList.toggle('open'); nm.classList.toggle('open'); });
+  nm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nh.classList.remove('open'); nm.classList.remove('open'); }));
+
+  // Reveal
+  const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('open')));
+
+  // Form submit → WhatsApp
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name     = document.getElementById('fname').value.trim();
+    const phone    = document.getElementById('fphone').value.trim();
+    const business = document.getElementById('fbusiness').value.trim();
+    const service  = document.getElementById('fservice').value;
+    const budget   = document.getElementById('fbudget').value;
+    const message  = document.getElementById('fmessage').value.trim();
+
+    let msg = `Bonjour ProfitizeAgency ! 👋\n\n`;
+    msg += `*Nom:* ${name}\n`;
+    msg += `*Téléphone:* ${phone}\n`;
+    if (business) msg += `*Business:* ${business}\n`;
+    msg += `*Service:* ${service}\n`;
+    if (budget) msg += `*Budget:* ${budget}\n`;
+    if (message) msg += `\n*Message:*\n${message}`;
+
+    window.open(`https://wa.me/212619947483?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+</script>
+</body>
+</html>
+
+

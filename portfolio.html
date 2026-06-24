@@ -1,0 +1,513 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio ProfitizeAgency — Case studies et résultats prouvés pour nos clients au Maroc. Gusto, Jeldex, Lavernasweet, Akram Aboulaid et plus.">
+  <title>Portfolio | ProfitizeAgency</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .port-hero {
+      padding: 10rem 0 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .port-hero h1 { margin-bottom: 1.2rem; }
+    .port-hero p  { color:var(--gray-m);font-size:1.1rem;max-width:560px;margin:0 auto; }
+
+    /* RESULTS BAND */
+    .res-band { background:var(--dark-2);padding:3rem 0;border-top:1px solid var(--card-b);border-bottom:1px solid var(--card-b); }
+    .res-band-grid { display:grid;grid-template-columns:repeat(5,1fr);gap:0;text-align:center; }
+    .rb-item { padding:1.5rem 1rem;position:relative; }
+    .rb-item::after { content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--card-b); }
+    .rb-item:last-child::after { display:none; }
+    .rb-num { font-family:var(--font-h);font-size:2.2rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1; }
+    .rb-lbl { font-size:0.78rem;color:var(--gray-m);margin-top:0.35rem; }
+
+    /* CASE STUDIES */
+    .cs-section { padding: 6rem 0; }
+    .cs-full-grid { display:flex;flex-direction:column;gap:4rem; }
+
+    .cs-full-card {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:3rem;
+      align-items:center;
+    }
+
+    .cs-full-card.rev { direction:rtl; }
+    .cs-full-card.rev > * { direction:ltr; }
+
+    /* Visual side */
+    .cs-visual {
+      background:var(--card-bg);
+      border:1px solid var(--card-b);
+      border-radius:20px;
+      padding:2rem;
+      backdrop-filter:blur(12px);
+      position:relative;
+      overflow:hidden;
+    }
+    .cs-visual::before {
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;height:1px;
+      background:var(--grad);
+    }
+
+    .cs-visual-header { display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem; }
+    .cs-client-name { font-family:var(--font-h);font-size:1.2rem;font-weight:800;color:var(--white); }
+    .cs-industry { font-size:0.72rem;font-weight:600;color:var(--gray-m);margin-top:0.15rem; }
+
+    .cs-metrics-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem; }
+    .cs-metric {
+      background:rgba(15,23,42,.6);
+      border-radius:12px;
+      padding:1rem;
+      text-align:center;
+    }
+    .csm-num { font-family:var(--font-h);font-size:1.4rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .csm-lbl { font-size:0.65rem;color:var(--gray-m);margin-top:0.2rem; }
+
+    .cs-bar-section { }
+    .cs-bar-label { display:flex;justify-content:space-between;font-size:0.72rem;color:var(--gray-m);margin-bottom:0.3rem; }
+    .cs-bar-track { height:6px;background:rgba(255,255,255,.07);border-radius:999px;overflow:hidden;margin-bottom:0.7rem; }
+    .cs-bar-fill { height:100%;border-radius:999px;background:var(--grad); }
+
+    /* Info side */
+    .cs-content .cs-tag-line {
+      display:inline-flex;align-items:center;gap:0.4rem;
+      font-size:0.7rem;font-weight:700;color:var(--cyan);
+      text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0.8rem;
+    }
+    .cs-content h3 { font-size:1.7rem;margin-bottom:0.7rem; }
+    .cs-content .cs-overview { font-size:0.95rem;color:var(--gray-m);line-height:1.8;margin-bottom:1.5rem; }
+
+    .cs-section-title { font-size:0.72rem;font-weight:700;color:var(--gray-m);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.6rem; }
+    .cs-obj-list { list-style:none;margin-bottom:1.4rem; }
+    .cs-obj-list li { display:flex;align-items:center;gap:0.5rem;font-size:0.88rem;color:var(--gray-m);padding:0.3rem 0; }
+    .cs-obj-list li::before { content:'→';color:var(--cyan);font-weight:700;flex-shrink:0; }
+
+    .cs-strategy-tags { display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1.5rem; }
+    .cs-stag {
+      font-size:0.7rem;font-weight:600;padding:0.25rem 0.7rem;
+      border-radius:999px;background:rgba(0,191,255,.08);
+      border:1px solid rgba(0,191,255,.18);color:var(--cyan);
+    }
+
+    .cs-results-list { list-style:none;margin-bottom:1.8rem; }
+    .cs-results-list li {
+      display:flex;align-items:center;gap:0.5rem;
+      font-size:0.9rem;font-weight:600;color:var(--white);
+      padding:0.4rem 0;
+      border-bottom:1px solid var(--card-b);
+    }
+    .cs-results-list li:last-child { border-bottom:none; }
+    .cs-results-list li i { color:#4ADE80;font-size:0.8rem;flex-shrink:0; }
+
+    /* DIVIDERS between case studies */
+    .cs-div { height:1px;background:linear-gradient(90deg,transparent,var(--card-b) 50%,transparent); }
+
+    /* STATS HIGHLIGHT */
+    .stats-hl { background:var(--dark-2);padding:5rem 0;text-align:center; }
+    .shl-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem; }
+    .shl-card { padding:2rem 1.5rem; }
+    .shl-icon { font-size:2rem;margin-bottom:1rem;color:var(--cyan); }
+
+    /* CTA */
+    .port-cta { padding:5.5rem 0;text-align:center; }
+    .port-cta h2 { margin-bottom:1rem; }
+    .port-cta p  { color:var(--gray-m);max-width:500px;margin:0 auto 2.5rem; }
+
+    @media(max-width:1024px){
+      .cs-full-card, .cs-full-card.rev { grid-template-columns:1fr;direction:ltr; }
+      .cs-metrics-grid { grid-template-columns:repeat(3,1fr); }
+      .res-band-grid { grid-template-columns:repeat(3,1fr); }
+      .rb-item:nth-child(3)::after { display:none; }
+      .shl-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:640px){
+      .res-band-grid { grid-template-columns:repeat(2,1fr); }
+      .rb-item:nth-child(2)::after { display:none; }
+      .cs-metrics-grid { grid-template-columns:repeat(3,1fr); }
+      .shl-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+<!-- NAV -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo-img"><img src="logo.svg" alt="ProfitizeAgency"></a>
+    <ul class="n-menu" id="nm">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="testimonials.html">Avis</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="n-cta"><i class="fas fa-calendar-check"></i> Free Call</a>
+    <button class="n-ham" id="nh" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="port-hero grid-bg">
+  <div class="orb orb-blue" style="width:500px;height:500px;top:-150px;left:-80px;"></div>
+  <div class="orb orb-cyan" style="width:380px;height:380px;bottom:-80px;right:-60px;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="chip reveal" style="margin:0 auto 1rem;">Case Studies</div>
+    <h1 class="reveal d1">Our work <span class="g-text">speaks for itself</span></h1>
+    <p class="reveal d2">Résultats réels, métriques vérifiables. Découvrez comment nous avons transformé le digital de nos clients en leviers de croissance.</p>
+  </div>
+</section>
+
+<!-- RESULTS BAND -->
+<div class="res-band">
+  <div class="container">
+    <div class="res-band-grid">
+      <div class="rb-item reveal"><div class="rb-num">12.2M+</div><div class="rb-lbl">Vues Générées</div></div>
+      <div class="rb-item reveal d1"><div class="rb-num">+$3K</div><div class="rb-lbl">Revenue/Client</div></div>
+      <div class="rb-item reveal d2"><div class="rb-num">+250</div><div class="rb-lbl">Leads Qualifiés/mois</div></div>
+      <div class="rb-item reveal d3"><div class="rb-num">+180%</div><div class="rb-lbl">Croissance Engagement</div></div>
+      <div class="rb-item reveal d4"><div class="rb-num">95%</div><div class="rb-lbl">Satisfaction Client</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDIES -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-full-grid">
+
+      <!-- CASE 1: Gusto -->
+      <div class="cs-full-card reveal">
+        <div class="cs-visual">
+          <div class="cs-visual-header">
+            <div>
+              <div class="cs-client-name">Gusto Chicken Fries</div>
+              <div class="cs-industry">🍗 Restauration Fast Food</div>
+            </div>
+            <span class="bdg bdg-green"><i class="fas fa-circle"></i> Completed</span>
+          </div>
+          <div class="cs-metrics-grid">
+            <div class="cs-metric"><div class="csm-num">1.2M</div><div class="csm-lbl">Vues</div></div>
+            <div class="cs-metric"><div class="csm-num">+40%</div><div class="csm-lbl">Ventes</div></div>
+            <div class="cs-metric"><div class="csm-num">3.2K</div><div class="csm-lbl">Abonnés</div></div>
+          </div>
+          <div class="cs-bar-section">
+            <div class="cs-bar-label"><span>Portée Organique</span><span>+380%</span></div>
+            <div class="cs-bar-track"><div class="cs-bar-fill" style="width:85%"></div></div>
+            <div class="cs-bar-label"><span>Engagement</span><span>+220%</span></div>
+            <div class="cs-bar-track"><div class="cs-bar-fill" style="width:72%"></div></div>
+            <div class="cs-bar-label"><span>Trafic Restaurant</span><span>+40%</span></div>
+            <div class="cs-bar-track"><div class="cs-bar-fill" style="width:58%"></div></div>
+          </div>
+        </div>
+        <div class="cs-content">
+          <div class="cs-tag-line"><i class="fas fa-fire"></i> Viral Content + Ads</div>
+          <h3>How Gusto went from unknown to <span class="g-text">viral in 30 days</span></h3>
+          <p class="cs-overview">Gusto Chicken Fries voulait augmenter sa notoriété à Laayoune et attirer plus de clients sans budget énorme. Nous avons créé une stratégie contenu viral combinée à des Ads ciblées localement.</p>
+
+          <div class="cs-section-title">Objectifs</div>
+          <ul class="cs-obj-list">
+            <li>Augmenter la visibilité de la marque localement</li>
+            <li>Générer du trafic vers le restaurant</li>
+            <li>Construire une communauté engagée sur Instagram</li>
+          </ul>
+
+          <div class="cs-section-title">Stratégie appliquée</div>
+          <div class="cs-strategy-tags">
+            <span class="cs-stag">Viral Reels</span>
+            <span class="cs-stag">Meta Ads</span>
+            <span class="cs-stag">User Generated Content</span>
+            <span class="cs-stag">Food Photography</span>
+            <span class="cs-stag">Story Ads</span>
+          </div>
+
+          <div class="cs-section-title">Résultats en 60 jours</div>
+          <ul class="cs-results-list">
+            <li><i class="fas fa-check-circle"></i> 1.2M vues organiques sur les Reels</li>
+            <li><i class="fas fa-check-circle"></i> +40% d'augmentation des ventes mensuelles</li>
+            <li><i class="fas fa-check-circle"></i> +3,200 nouveaux abonnés Instagram</li>
+            <li><i class="fas fa-check-circle"></i> ROI publicité: 3.1x</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cs-div"></div>
+
+      <!-- CASE 2: Jeldex -->
+      <div class="cs-full-card rev reveal">
+        <div class="cs-visual">
+          <div class="cs-visual-header">
+            <div>
+              <div class="cs-client-name">Jeldex.ma</div>
+              <div class="cs-industry">🌐 E-Commerce</div>
+            </div>
+            <span class="bdg bdg-green"><i class="fas fa-circle"></i> Completed</span>
+          </div>
+          <div class="cs-metrics-grid">
+            <div class="cs-metric"><div class="csm-num">+75%</div><div class="csm-lbl">Conversion</div></div>
+            <div class="cs-metric"><div class="csm-num">250</div><div class="csm-lbl">Leads/mois</div></div>
+            <div class="cs-metric"><div class="csm-num">2.5x</div><div class="csm-lbl">ROI Ads</div></div>
+          </div>
+          <div class="cs-bar-section">
+            <div class="cs-bar-label"><span>Taux de conversion</span><span>+75%</span></div>
+            <div class="cs-bar-track"><div class="cs-bar-fill" style="width:80%"></div></div>
+            <div class="cs-bar-label"><span>Leads qualifiés</span><span>+250/mois</span></div>
+            <div class="cs-bar-track"><div class="cs-bar-fill" style="width:70%"></div></div>
+            <div class="cs-bar-label"><span>Revenu mensuel</span><span>+$3,000</span></div>
+            <div class="cs-bar-track"><div class="cs-bar-fill" style="width:65%"></div></div>
+          </div>
+        </div>
+        <div class="cs-content">
+          <div class="cs-tag-line"><i class="fas fa-shopping-cart"></i> SEO + Meta Ads + Email</div>
+          <h3>From traffic to <span class="g-text">$3K+ revenue per month</span></h3>
+          <p class="cs-overview">Jeldex.ma avait du trafic mais un faible taux de conversion. Nous avons refonte la stratégie d'acquisition avec SEO, publicités ciblées et une campagne email automation pour maximiser le revenu.</p>
+
+          <div class="cs-section-title">Objectifs</div>
+          <ul class="cs-obj-list">
+            <li>Augmenter le taux de conversion du site</li>
+            <li>Générer des leads qualifiés de manière prévisible</li>
+            <li>Scaler les ventes avec un budget publicitaire maîtrisé</li>
+          </ul>
+
+          <div class="cs-section-title">Stratégie appliquée</div>
+          <div class="cs-strategy-tags">
+            <span class="cs-stag">SEO Technique</span>
+            <span class="cs-stag">Facebook Ads</span>
+            <span class="cs-stag">Email Automation</span>
+            <span class="cs-stag">CRO</span>
+            <span class="cs-stag">Retargeting</span>
+          </div>
+
+          <div class="cs-section-title">Résultats en 90 jours</div>
+          <ul class="cs-results-list">
+            <li><i class="fas fa-check-circle"></i> +75% taux de conversion sur le site</li>
+            <li><i class="fas fa-check-circle"></i> 250 leads qualifiés par mois</li>
+            <li><i class="fas fa-check-circle"></i> +$3,000 revenus additionnels/mois</li>
+            <li><i class="fas fa-check-circle"></i> Position Top 3 Google pour 12 mots-clés</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cs-div"></div>
+
+      <!-- CASE 3: Akram -->
+      <div class="cs-full-card reveal">
+        <div class="cs-visual">
+          <div class="cs-visual-header">
+            <div>
+              <div class="cs-client-name">Akram Aboulaid</div>
+              <div class="cs-industry">👤 Personal Brand</div>
+            </div>
+            <span class="bdg bdg-green"><i class="fas fa-circle"></i> Completed</span>
+          </div>
+          <div class="cs-metrics-grid">
+            <div class="cs-metric"><div class="csm-num">+50K</div><div class="csm-lbl">Followers</div></div>
+            <div class="cs-metric"><div class="csm-num">5M+</div><div class="csm-lbl">Views</div></div>
+            <div class="cs-metric"><div class="csm-num">+180%</div><div class="csm-lbl">Engagement</div></div>
+          </div>
+          <div class="cs-bar-section">
+            <div class="cs-bar-label"><span>Croissance abonnés</span><span>+50,000</span></div>
+            <div class="cs-bar-track"><div class="cs-bar-fill" style="width:90%"></div></div>
+            <div class="cs-bar-label"><span>Vues totales</span><span>5M+</span></div>
+            <div class="cs-bar-track"><div class="cs-bar-fill" style="width:95%"></div></div>
+            <div class="cs-bar-label"><span>Taux d'engagement</span><span>+180%</span></div>
+            <div class="cs-bar-track"><div class="cs-bar-fill" style="width:78%"></div></div>
+          </div>
+        </div>
+        <div class="cs-content">
+          <div class="cs-tag-line"><i class="fas fa-star"></i> Content Strategy + Reels</div>
+          <h3>Building a <span class="g-text">5M+ views personal brand</span></h3>
+          <p class="cs-overview">Akram voulait construire une audience massive sur Instagram pour décrocher des partenariats marque. Stratégie Reels optimisée, contenu de valeur et personal branding qui a explosé en 4 mois.</p>
+
+          <div class="cs-section-title">Objectifs</div>
+          <ul class="cs-obj-list">
+            <li>Passer de 5K à 50K+ abonnés en 6 mois</li>
+            <li>Générer du contenu viral régulièrement</li>
+            <li>Attirer des partenariats et deals de marque</li>
+          </ul>
+
+          <div class="cs-section-title">Stratégie appliquée</div>
+          <div class="cs-strategy-tags">
+            <span class="cs-stag">Reels Optimization</span>
+            <span class="cs-stag">Content Calendar</span>
+            <span class="cs-stag">Hook Strategy</span>
+            <span class="cs-stag">Personal Branding</span>
+            <span class="cs-stag">Collabs</span>
+          </div>
+
+          <div class="cs-section-title">Résultats en 4 mois</div>
+          <ul class="cs-results-list">
+            <li><i class="fas fa-check-circle"></i> +50,000 nouveaux abonnés Instagram</li>
+            <li><i class="fas fa-check-circle"></i> 5M+ vues cumulées sur Reels</li>
+            <li><i class="fas fa-check-circle"></i> +180% d'engagement rate</li>
+            <li><i class="fas fa-check-circle"></i> 3 partenariats marque signés</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cs-div"></div>
+
+      <!-- CASE 4: Lavernasweet -->
+      <div class="cs-full-card rev reveal">
+        <div class="cs-visual">
+          <div class="cs-visual-header">
+            <div>
+              <div class="cs-client-name">Lavernasweet</div>
+              <div class="cs-industry">🍰 Pâtisserie & Desserts</div>
+            </div>
+            <span class="bdg bdg-green"><i class="fas fa-circle"></i> Completed</span>
+          </div>
+          <div class="cs-metrics-grid">
+            <div class="cs-metric"><div class="csm-num">850K</div><div class="csm-lbl">Portée</div></div>
+            <div class="cs-metric"><div class="csm-num">3x</div><div class="csm-lbl">Commandes</div></div>
+            <div class="cs-metric"><div class="csm-num">+220%</div><div class="csm-lbl">Followers</div></div>
+          </div>
+          <div class="cs-bar-section">
+            <div class="cs-bar-label"><span>Portée organique</span><span>850K</span></div>
+            <div class="cs-bar-track"><div class="cs-bar-fill" style="width:88%"></div></div>
+            <div class="cs-bar-label"><span>Croissance commandes</span><span>3x</span></div>
+            <div class="cs-bar-track"><div class="cs-bar-fill" style="width:82%"></div></div>
+            <div class="cs-bar-label"><span>Engagement Stories</span><span>+180%</span></div>
+            <div class="cs-bar-track"><div class="cs-bar-fill" style="width:75%"></div></div>
+          </div>
+        </div>
+        <div class="cs-content">
+          <div class="cs-tag-line"><i class="fas fa-cake-candles"></i> Branding + Social + Ads</div>
+          <h3>From zero online presence to <span class="g-text">850K reach</span></h3>
+          <p class="cs-overview">Lavernasweet n'avait aucune présence digitale. Nous avons créé l'identité visuelle complète, le contenu photo professionnel et lancé des campagnes Instagram qui ont triplé les commandes.</p>
+
+          <div class="cs-section-title">Objectifs</div>
+          <ul class="cs-obj-list">
+            <li>Créer une identité visuelle professionnelle</li>
+            <li>Construire une présence Instagram engageante</li>
+            <li>Augmenter les commandes en ligne et en boutique</li>
+          </ul>
+
+          <div class="cs-section-title">Stratégie appliquée</div>
+          <div class="cs-strategy-tags">
+            <span class="cs-stag">Branding complet</span>
+            <span class="cs-stag">Food Photography</span>
+            <span class="cs-stag">Story Ads</span>
+            <span class="cs-stag">Contenu Saisonnier</span>
+            <span class="cs-stag">Influencer local</span>
+          </div>
+
+          <div class="cs-section-title">Résultats en 3 mois</div>
+          <ul class="cs-results-list">
+            <li><i class="fas fa-check-circle"></i> 850K portée organique cumulée</li>
+            <li><i class="fas fa-check-circle"></i> Commandes x3 en 3 mois</li>
+            <li><i class="fas fa-check-circle"></i> +220% croissance abonnés</li>
+            <li><i class="fas fa-check-circle"></i> Sold-out à chaque lancement produit</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS HIGHLIGHT -->
+<section class="stats-hl">
+  <div class="container">
+    <div class="s-hd c reveal">
+      <div class="chip">Nos chiffres</div>
+      <h2 class="s-title">Numbers that <span class="g-text">don't lie</span></h2>
+    </div>
+    <div class="shl-grid">
+      <div class="card shl-card reveal">
+        <div class="shl-icon"><i class="fas fa-fire"></i></div>
+        <div class="stat-n g-text" style="font-size:2.5rem;line-height:1;margin-bottom:0.4rem;">12.2M+</div>
+        <div class="stat-l">Vues Générées pour nos clients</div>
+      </div>
+      <div class="card shl-card reveal d1">
+        <div class="shl-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+        <div class="stat-n g-text" style="font-size:2.5rem;line-height:1;margin-bottom:0.4rem;">+$3K</div>
+        <div class="stat-l">Revenue mensuel moyen généré</div>
+      </div>
+      <div class="card shl-card reveal d2">
+        <div class="shl-icon"><i class="fas fa-people-group"></i></div>
+        <div class="stat-n g-text" style="font-size:2.5rem;line-height:1;margin-bottom:0.4rem;">+250</div>
+        <div class="stat-l">Leads qualifiés générés / mois</div>
+      </div>
+      <div class="card shl-card reveal d3">
+        <div class="shl-icon"><i class="fas fa-trophy"></i></div>
+        <div class="stat-n g-text" style="font-size:2.5rem;line-height:1;margin-bottom:0.4rem;">95%</div>
+        <div class="stat-l">Satisfaction client</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="port-cta">
+  <div class="orb orb-blue" style="width:400px;height:400px;left:50%;top:50%;transform:translate(-50%,-50%);filter:blur(120px);opacity:.08;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="chip reveal" style="margin:0 auto 1rem;">Votre tour</div>
+    <h2 class="reveal d1">Ready to become our<br><span class="g-text">next success story?</span></h2>
+    <p class="reveal d2">Votre business mérite les mêmes résultats. Parlons de votre projet aujourd'hui.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="reveal d3">
+      <a href="contact.html" class="btn btn-p btn-lg"><i class="fas fa-calendar-check"></i> Book Free Call</a>
+      <a href="https://wa.me/212619947483" target="_blank" class="btn btn-o btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="index.html" class="logo-img footer-logo"><img src="logo.svg" alt="ProfitizeAgency"></a>
+        <p class="ft-brand-txt">Agence de marketing digital à Laayoune, Maroc.</p>
+        <div class="socials">
+          <a href="https://instagram.com/Profitizeagency" target="_blank" class="soc-btn"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/212619947483" target="_blank" class="soc-btn"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:profitizeagc@gmail.com" class="soc-btn"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="soc-btn"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="ft-col"><h5>Pages</h5><ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="ft-col"><h5>Services</h5><ul>
+        <li><a href="services.html">Marketing Digital</a></li>
+        <li><a href="services.html">Création de Contenu</a></li>
+        <li><a href="services.html">Publicité Ads</a></li>
+        <li><a href="services.html">SEO</a></li>
+      </ul></div>
+      <div class="ft-col"><h5>Contact</h5><ul>
+        <li><a href="tel:+212619947483">+212 619 947 483</a></li>
+        <li><a href="mailto:profitizeagc@gmail.com">profitizeagc@gmail.com</a></li>
+        <li><a href="#">Laayoune, Maroc</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-bot">
+      <p>&copy; 2025 <span class="cy">ProfitizeAgency</span>. Tous droits réservés.</p>
+      <p>Made with ♥ in Laayoune</p>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/212619947483" target="_blank" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40));
+  const nh = document.getElementById('nh'), nm = document.getElementById('nm');
+  nh.addEventListener('click', () => { nh.classList.toggle('open'); nm.classList.toggle('open'); });
+  nm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nh.classList.remove('open'); nm.classList.remove('open'); }));
+  const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+</script>
+</body>
+</html>
+
+
