@@ -121,6 +121,70 @@
     .port-cta h2 { margin-bottom:1rem; }
     .port-cta p  { color:var(--gray-m);max-width:500px;margin:0 auto 2.5rem; }
 
+    /* VIDEO SHOWREEL */
+    .video-section { padding: 5rem 0; }
+    .video-wrapper {
+      position: relative;
+      max-width: 900px;
+      margin: 3rem auto 0;
+      border-radius: 24px;
+      padding: 3px;
+      background: var(--grad);
+      box-shadow: 0 0 80px rgba(0,191,255,.18), 0 0 30px rgba(120,80,255,.12);
+    }
+    .video-inner {
+      border-radius: 22px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+      aspect-ratio: 16/9;
+    }
+    .video-inner iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .video-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,191,255,.1);
+      border: 1px solid rgba(0,191,255,.25);
+      border-radius: 999px;
+      padding: 0.35rem 1rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 1rem;
+    }
+    .video-glow-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    .video-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .vm-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--gray-m);
+    }
+    .vm-item i { color: var(--cyan); }
+
     @media(max-width:1024px){
       .cs-full-card, .cs-full-card.rev { grid-template-columns:1fr;direction:ltr; }
       .cs-metrics-grid { grid-template-columns:repeat(3,1fr); }
@@ -133,6 +197,7 @@
       .rb-item:nth-child(2)::after { display:none; }
       .cs-metrics-grid { grid-template-columns:repeat(3,1fr); }
       .shl-grid { grid-template-columns:1fr; }
+      .video-meta { gap: 1rem; }
     }
   </style>
 </head>
@@ -409,6 +474,37 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SHOWREEL -->
+<section class="video-section">
+  <div class="orb orb-cyan" style="width:420px;height:420px;left:50%;top:50%;transform:translate(-50%,-50%);filter:blur(130px);opacity:.06;"></div>
+  <div class="container" style="position:relative;z-index:1;text-align:center;">
+    <div class="video-badge reveal">
+      <span class="video-glow-dot"></span>
+      Notre Travail en Action
+    </div>
+    <h2 class="reveal d1">Watch how we <span class="g-text">deliver results</span></h2>
+    <p class="reveal d2" style="color:var(--gray-m);max-width:540px;margin:0.8rem auto 0;font-size:0.95rem;line-height:1.8;">
+      Un aperçu concret de ce que nous créons pour nos clients — contenu, stratégie et résultats réels.
+    </p>
+    <div class="video-wrapper reveal d3">
+      <div class="video-inner">
+        <iframe
+          src="https://drive.google.com/file/d/1saK238-cc2R-ggU4J36hn43gE6byBsKy/preview"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          loading="lazy"
+          title="ProfitizeAgency — Showreel">
+        </iframe>
+      </div>
+    </div>
+    <div class="video-meta reveal d4">
+      <div class="vm-item"><i class="fas fa-play-circle"></i> Contenu Viral</div>
+      <div class="vm-item"><i class="fas fa-chart-line"></i> Résultats Prouvés</div>
+      <div class="vm-item"><i class="fas fa-star"></i> Clients Satisfaits</div>
     </div>
   </div>
 </section>
