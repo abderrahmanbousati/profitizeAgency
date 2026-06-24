@@ -134,6 +134,35 @@
       .cs-metrics-grid { grid-template-columns:repeat(3,1fr); }
       .shl-grid { grid-template-columns:1fr; }
     }
+
+    /* VIDEO SECTION */
+    .video-section { padding: 6rem 0; background: var(--dark-2); }
+    .video-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--card-b);
+      background: var(--card-bg);
+      max-width: 860px;
+      margin: 3rem auto 0;
+      box-shadow: 0 0 60px rgba(0,191,255,.08);
+    }
+    .video-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: var(--grad);
+      z-index: 1;
+    }
+    .video-wrapper iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+    }
+    @media(max-width:640px){
+      .video-section { padding: 4rem 0; }
+    }
   </style>
 </head>
 <body>
@@ -409,6 +438,24 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="video-section">
+  <div class="container">
+    <div class="s-hd c reveal">
+      <div class="chip">Our Work</div>
+      <h2 class="s-title">See us <span class="g-text">in action</span></h2>
+      <p style="color:var(--gray-m);max-width:500px;margin:0.8rem auto 0;font-size:1rem;">Un aperçu concret de ce que nous créons pour nos clients.</p>
+    </div>
+    <div class="video-wrapper reveal d1">
+      <iframe
+        src="https://drive.google.com/file/d/1saK238-cc2R-ggU4J36hn43gE6byBsKy/preview"
+        allow="autoplay"
+        allowfullscreen>
+      </iframe>
     </div>
   </div>
 </section>
