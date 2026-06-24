@@ -138,12 +138,70 @@
       background: #000;
       position: relative;
       aspect-ratio: 16/9;
+      cursor: pointer;
     }
     .video-inner iframe {
       width: 100%;
       height: 100%;
       border: none;
       display: block;
+      position: absolute;
+      top: 0; left: 0;
+    }
+    .video-thumb {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0a0f1e 0%, #0d1b3e 50%, #091428 100%);
+      transition: opacity 0.3s;
+      z-index: 2;
+    }
+    .video-thumb.hidden { opacity: 0; pointer-events: none; }
+    .video-thumb-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(0,191,255,.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0,191,255,.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .play-btn {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: var(--grad);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; color: #fff;
+      box-shadow: 0 0 40px rgba(0,191,255,.4), 0 0 80px rgba(120,80,255,.2);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative; z-index: 1;
+      padding-left: 5px;
+    }
+    .video-inner:hover .play-btn {
+      transform: scale(1.12);
+      box-shadow: 0 0 60px rgba(0,191,255,.6), 0 0 100px rgba(120,80,255,.3);
+    }
+    .play-label {
+      position: relative; z-index: 1;
+      margin-top: 1.2rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.5px;
+    }
+    .video-corner-badge {
+      position: absolute;
+      top: 1.2rem; right: 1.2rem;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0,191,255,.25);
+      border-radius: 999px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--cyan);
+      z-index: 3;
     }
     .video-badge {
       display: inline-flex;
@@ -491,13 +549,23 @@
       Un aperçu concret de ce que nous créons pour nos clients — contenu, stratégie et résultats réels.
     </p>
     <div class="video-wrapper reveal d3">
-      <div class="video-inner">
+      <div class="video-inner" id="videoBox">
+        <!-- Thumbnail shown by default -->
+        <div class="video-thumb" id="videoThumb">
+          <div class="video-thumb-grid"></div>
+          <div class="video-corner-badge"><i class="fas fa-film"></i> Showreel</div>
+          <div class="play-btn"><i class="fas fa-play"></i></div>
+          <div class="play-label">Cliquez pour regarder</div>
+        </div>
+        <!-- iframe loaded on click -->
         <iframe
-          src="https://drive.google.com/file/d/1saK238-cc2R-ggU4J36hn43gE6byBsKy/preview"
+          id="videoFrame"
+          src=""
+          data-src="https://drive.google.com/file/d/1saK238-cc2R-ggU4J36hn43gE6byBsKy/preview"
           allow="autoplay; encrypted-media"
           allowfullscreen
-          loading="lazy"
-          title="ProfitizeAgency — Showreel">
+          title="ProfitizeAgency — Showreel"
+          style="opacity:0;transition:opacity .4s;">
         </iframe>
       </div>
     </div>
@@ -602,6 +670,18 @@
   nm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nh.classList.remove('open'); nm.classList.remove('open'); }));
   const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+  // Video click-to-play
+  const videoBox = document.getElementById('videoBox');
+  const videoThumb = document.getElementById('videoThumb');
+  const videoFrame = document.getElementById('videoFrame');
+  if (videoBox) {
+    videoBox.addEventListener('click', function() {
+      videoFrame.src = videoFrame.dataset.src + '&autoplay=1';
+      videoThumb.classList.add('hidden');
+      setTimeout(() => { videoFrame.style.opacity = '1'; }, 100);
+    });
+  }
 </script>
 </body>
 </html>
